@@ -1,1 +1,1 @@
-# studdy
+# Studdy
