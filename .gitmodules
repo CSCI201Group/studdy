@@ -1,6 +1,0 @@
-[submodule "studdy-frontend"]
-	path = studdy-frontend
-	url = https://github.com/CSCI201Group/studdy-frontend.git
-[submodule "frontend"]
-	path = frontend
-	url = https://github.com/CSCI201Group/frontend.git
