@@ -21,13 +21,13 @@
 &emsp; a. In Eclipse, File > Import > Maven > Existing Maven Projects > Browse for the studdy folder you cloned <br>
 &emsp;&emsp; - It'll take a moment to import, give it a minute <br>
 &emsp; b. Double check the database username and password: <br>
-&emsp;&emsp; i. studdy > src/main/resources > application.properties <br>
+&emsp;&emsp; i. src > main > resources > application.properties <br>
 &emsp;&emsp; - The username and password is the same as ones you use to login to the localhost connection <br>
 &emsp; c. Right click on the studdy project folder in "Package Explorer" > Run As > Maven build (the one without ..) <br>
 &emsp; d. Type in "goal" as package, and click Run <br>
 &emsp; e. If the build is successful, it'll say "BUILD SUCCESS" in the console. <br>
 &emsp; f. Run the application: <br>
-&emsp;&emsp; studdy > src/main/java > com.studdy.springboot > Right click on SpringbootApplication.java > Run As > Java Application <br>
+&emsp;&emsp; src > main > java > com.studdy.springboot > Right click on SpringbootApplication.java > Run As > Java Application <br>
 &emsp; There should be no errors and somewhere in the very right column should show: <br>
 &emsp;&emsp; Tomcat started on port(s): 8080... <br>
 &emsp;&emsp; Started SpringbootApplication in 4.355 seconds <br>
