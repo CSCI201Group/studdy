@@ -38,7 +38,7 @@
 &emsp; b. Install React Router package: `npm install react-router`<br>
 &emsp; c. Install React Material UI: `npm install @material-ui/core` and `npm install @material-ui/icons` <br>
 &emsp; - If npm doesn't work, try replacing `npm` with `yarn` (as in yarn install...) <br>
-&emsp; d. Install Sass Stylesheet: `npm install node-sass --save` or `$ yarn add node-sass`
+&emsp; d. Install Sass Stylesheet: `$ yarn add node-sass@4.14.1`
 10. Run the website: `yarn start` <br>
 This will automatically start the website on http://localhost:3000/ <br>
 11. Test the SQL POST and GET requests: <br>
