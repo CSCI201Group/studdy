@@ -24,7 +24,7 @@
 &emsp;&emsp; i. src/main/resources > application.properties <br>
 &emsp;&emsp; - The username and password is the same as ones you use to login to the localhost connection <br>
 &emsp; c. Right click on the studdy project folder in "Package Explorer" > Run As > Maven build (the one without ..) <br>
-&emsp; d. Type in package in "Goals" and click Run <br>
+&emsp; d. Type in "package" for "Goals:" and click Run <br>
 &emsp; e. If the build is successful, it'll say "BUILD SUCCESS" in the console. <br>
 &emsp; f. Run the application: <br>
 &emsp;&emsp; src/main/java > com.studdy.springboot > Right click on SpringbootApplication.java > Run As > Java Application <br>
