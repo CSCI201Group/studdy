@@ -32,12 +32,12 @@ public class StudentController {
 	}
 
 	@GetMapping("/student/{id}")
-	public Student get(@PathVariable int id) {
+	public Student get(@PathVariable Long id) {
 		return studentService.get(id);
 	}
  
 	@DeleteMapping("/student/{id}")
- 	public String delete(@PathVariable int id) {
+ 	public String delete(@PathVariable Long id) {
 		studentService.delete(id);
 		return "Student removed with id "+id;
 	}

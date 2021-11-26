@@ -6,7 +6,7 @@ import com.studdy.springboot.modal.Student;
 
 public interface StudentDAO {
 	List<Student> get();
-	Student get(int id);
+	Student get(Long id);
 	void save(Student student);
-	void delete(int id);
+	void delete(Long id);
 }
