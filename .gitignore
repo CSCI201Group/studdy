@@ -64,4 +64,8 @@ local.properties
 # intellij
 .idea/
 
+# test
+src/main/java/com/studdy/springboot/modal/TestMain.java
+demo.iml
+
 # End of https://www.gitignore.io/api/eclipse
