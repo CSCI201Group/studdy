@@ -2,12 +2,9 @@ package com.studdy.springboot.modal;
 
 //import java.sql.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+
 @Entity
 @Table(name = "students")
 public class Student {
@@ -15,7 +12,7 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
 	@Column
-	private int id;
+	private Long id;
 	
 	@Column
 	private String email;
@@ -34,18 +31,39 @@ public class Student {
 	
 	@Column
 	private String major;
-	
+
+	@ElementCollection
+	private ArrayList<String> classes;
+
+	@Transient
+	private Match match;
+
+	public Student(Long id, String email, String password, String firstName, String lastName, String year, String major, Match match) {
+		this.id = id;
+		this.email = email;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.year = year;
+		this.major = major;
+		this.match = match;
+	}
+
+	public Student() {
+
+	}
+
 	@Override
 	public String toString() {
 		return "Student [id= " + id + "email= " + email + ", password=" + password + ", first name=" + firstName
 				+ ", last name=" + lastName + ", year=" + year + ", major=" + major + "]";
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public void setID(int id) {
+	public void setID(Long id) {
 		this.id = id;
 	}
 	
