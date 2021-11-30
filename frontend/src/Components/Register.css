@@ -59,7 +59,9 @@ input {
 .inputQ {
   color: white;
   font-family: "PT Mono", monospace;
-  float: left;
+}
+.inputQ {
+  float:left;
 }
 .questions-box {
   background-color: black;
@@ -68,6 +70,7 @@ input {
 .eachQ {
   background-color: black;
   height: 100px;
+  width: 100%;
 }
 input[type="radio"] {
   border: 0px;

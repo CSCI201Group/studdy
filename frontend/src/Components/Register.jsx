@@ -57,7 +57,6 @@ const Register = () => {
             <p className="questions">
               Please select the classes you are currently taking:
             </p>
-            <br />
             <label htmlFor="CSCI102" className="inputQ">
               CSCI102
               <input
@@ -95,10 +94,12 @@ const Register = () => {
               />
             </label>
           </div>
+          <div className="clearFloat"></div>
           <div className="eachQ">
             <p className="questions">
               Please select the study locations you prefer:
             </p>
+            <br/>
             <label htmlFor="Leavey" className="inputQ">
               Leavey Library
               <input
