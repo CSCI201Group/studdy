@@ -1,6 +1,7 @@
 /target
 /frontend/node_modules
 /frontend/build
+/frontend/yarn-error.log
 
 ### Eclipse ###
 
@@ -64,8 +65,7 @@ local.properties
 # intellij
 .idea/
 
-# test
-src/main/java/com/studdy/springboot/modal/TestMain.java
-demo.iml
-
 # End of https://www.gitignore.io/api/eclipse
+=======
+# End of https://www.gitignore.io/api/eclipse
+>>>>>>> 11ea059337e18206ba751ad0f2d07735197a3bb5
