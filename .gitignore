@@ -1,6 +1,7 @@
 /target
 /frontend/node_modules
 /frontend/build
+/frontend/yarn-error.log
 
 ### Eclipse ###
 
