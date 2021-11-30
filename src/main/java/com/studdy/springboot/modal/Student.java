@@ -3,6 +3,7 @@ package com.studdy.springboot.modal;
 //import java.sql.Date;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "students")
@@ -30,6 +31,9 @@ public class Student {
 	
 	@Column
 	private String major;
+
+	@ElementCollection
+	private ArrayList<String> classes;
 
 	@Transient
 	private Match match;

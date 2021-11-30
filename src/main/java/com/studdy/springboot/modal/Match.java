@@ -1,18 +1,19 @@
 package com.studdy.springboot.modal;
 
+import com.studdy.springboot.controller.StudentController;
 import com.studdy.springboot.service.StudentServiceImp;
 
 import java.util.ArrayList;
 
 public class Match {
-    private final StudentServiceImp studentService;
+    private final StudentController studentController;
     private ArrayList<Student> matchList;
     private ArrayList<Student> potentialMatchList;
     private Long currId;
     private int batchSize;
 
-    public Match(StudentServiceImp studentService) {
-        this.studentService = studentService;
+    public Match(StudentController studentController) {
+        this.studentController = studentController;
         this.matchList = new ArrayList<>();
         this.potentialMatchList = new ArrayList<>();
         this.currId = 0L;
@@ -31,12 +32,12 @@ public class Match {
 
     // Add given student to list of matches
     public void add(Long id) {
-        matchList.add(studentService.get(id));
+        matchList.add(studentController.get(id));
     }
 
     // Remove student with given id from list of matches
     public void remove(Long id) {
-        matchList.remove(studentService.get(id));
+        matchList.remove(studentController.get(id));
     }
 
     // Get potential match
@@ -49,7 +50,7 @@ public class Match {
                     break;
                 }
 
-                Student temp = studentService.get(currId);
+                Student temp = studentController.get(currId);
                 currId++;
 
                 if (compatibility(student, temp) > 0.5) {
@@ -66,7 +67,7 @@ public class Match {
 
     // Check if this.student matched with student with given id
     public boolean isMatched(Long id) {
-        if (matchList.contains(studentService.get(id))) {
+        if (matchList.contains(studentController.get(id))) {
             return true;
         }
 
