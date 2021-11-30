@@ -32,11 +32,18 @@ public class Student {
 	@Column
 	private String major;
 
-	@ElementCollection
-	private ArrayList<String> classes;
+	@Column
+	private String classes; // String of 1's and 0's representing true false
+
+	@Transient
+	private static final int[] classList = {103, 104, 170, 201, 270};
 
 	@Transient
 	private Match match;
+
+	public Student() {
+
+	}
 
 	public Student(Long id, String email, String password, String firstName, String lastName, String year, String major, Match match) {
 		this.id = id;
@@ -47,10 +54,6 @@ public class Student {
 		this.year = year;
 		this.major = major;
 		this.match = match;
-	}
-
-	public Student() {
-
 	}
 
 	@Override
