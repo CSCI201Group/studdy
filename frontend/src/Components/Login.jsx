@@ -21,6 +21,7 @@ const Login = () => {
               id="username"
               pattern=".+@usc\.edu"
               placeholder="ttrojan@usc.edu"
+			  minLength="8"
               required
             />
           </div>
