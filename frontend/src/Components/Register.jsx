@@ -142,7 +142,7 @@ const Register = () => {
       window.scrollTo(0,0);
     }
     // if email's end isn't @usc.edu
-    else if(email.substr(email.length-7, email.length-1) != "usc.edu"){
+    else if(email.substr(email.length-8, email.length-1) != "@usc.edu"){
       setMessage("Must be a USC email.");
       window.scrollTo(0,0);
     }
