@@ -17,6 +17,15 @@ body {
   background-color: white;
   font-family: "PT Mono", monospace;
 }
+.required{
+  font-size: 15px;
+  vertical-align: top;
+  color: rgb(196, 30, 30);
+}
+#required-note{
+  font-size: 13px;
+  vertical-align: top;
+}
 .formgroup {
   font-size: 40px;
   margin-left: auto;
@@ -24,12 +33,11 @@ body {
   font-family: "PT Mono", monospace;
   color: #233d4d;
   padding-top: 15px;
-  text-align: right;
 }
 #right-box {
-  float: left;
-  width: 400px;
-  margin-left: 200px;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 40px;
 }
 #top-box {
   margin-left: auto;
@@ -38,8 +46,8 @@ body {
   background-color: #a1c181;
   padding: 30px;
   border-radius: 40px;
-  width: 1000px;
-  height: 550px;
+  width: 90%;
+  max-width: 1000px;
 }
 .clearFloat {
   clear: both;
@@ -55,26 +63,59 @@ input {
   font-family: "PT Mono", monospace;
   transition: all 250ms ease-in-out;
 }
-.questions,
+.questions{
+  color: white;
+  font-family: "PT Mono", monospace;
+  padding: 15px 0px 8px 20px;
+  margin: 0;
+}
 .inputQ {
   color: white;
   font-family: "PT Mono", monospace;
-}
-.inputQ {
-  float:left;
-}
-.questions-box {
-  background-color: black;
-  height: 200px;
+  overflow-wrap: break-word;
+  float: left;
+  text-align: center;
+  margin: auto;
+  width: 100%;
 }
 .eachQ {
-  background-color: black;
   height: 100px;
   width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  margin-bottom: 15px;
 }
 input[type="radio"] {
   border: 0px;
   width: 70%;
   height: 1em;
   display: inline;
+}
+.choice{
+  width: 20%;
+  float: left;
+}
+.class-choice{
+  width: 16.66%;
+  float: left;
+}
+#submit-button{
+  width: 40%;
+  margin: 20px 30% 20px 30%;
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  background-color: #a1c181;
+  font-size: 25px;
+  font-family: "PT Mono", monospace;
+  transition: 0.5s;
+}
+#submit-button:hover{
+  background-color: #6d8356;
+  color: white;
+  transition: 0.5s;
+}
+#error-message{
+  color: red;
 }

@@ -64,9 +64,6 @@ export default function SimpleTable() {
 
   return (
     <div className={classes.paper}>
-      {/* <Avatar className={classes.avatar}>
-        <GroupIcon />
-      </Avatar> */}
       <Typography component="h1" variant="h5">
         Students Database
       </Typography>
@@ -84,8 +81,9 @@ export default function SimpleTable() {
               <TableCell align="center">Email</TableCell>
                 <TableCell align="center">First Name</TableCell>
                 <TableCell align="center">Last Name</TableCell>
-                <TableCell align="center">Year</TableCell>
-                <TableCell align="center">Major</TableCell>
+                <TableCell align="center">Classes</TableCell>
+                <TableCell align="center">Locations</TableCell>
+                <TableCell align="center">Subjects</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -94,20 +92,15 @@ export default function SimpleTable() {
                   <TableCell align="center">{row.email}</TableCell>
                   <TableCell align="center">{row.firstName}</TableCell>
                   <TableCell align="center">{row.lastName}</TableCell>
-                  <TableCell align="center">{row.year}</TableCell>
-                  <TableCell align="center">{row.major}</TableCell>
+                  <TableCell align="center">{row.classes}</TableCell>
+                  <TableCell align="center">{row.locations}</TableCell>
+                  <TableCell align="center">{row.subjects}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
       )}
-      <Link className={classes.link} to="/create-account">
-        {" "}
-        <Typography align="left">
-          &#x2190; Head back to create account
-        </Typography>{" "}
-      </Link>
     </div>
   );
 }

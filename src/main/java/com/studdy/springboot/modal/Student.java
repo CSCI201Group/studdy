@@ -25,18 +25,18 @@ public class Student {
 	
 	@Column
 	private String lastName;
-	
-	@Column
-	private String year;
-	
-	@Column
-	private String major;
 
 	@Column
-	private String classes; // String of 1's and 0's representing true false
+	private String classes; // use "," (comma) as delimiter
+	
+	@Column
+	private String locations; //use "," (comma) as delimiter
+	
+	@Column
+	private String subjects; //use "," (comma) as delimiter
 
 	@Transient
-	private static final int[] classList = {103, 104, 170, 201, 270};
+	private static final int[] classList = {102, 103, 104, 170, 201, 270};
 
 	@Transient
 	private Match match;
@@ -45,21 +45,22 @@ public class Student {
 
 	}
 
-	public Student(Long id, String email, String password, String firstName, String lastName, String year, String major, Match match) {
+	public Student(Long id, String email, String password, String firstName, String lastName, String classes, String locations, String subjects, Match match) {
 		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.year = year;
-		this.major = major;
+		this.classes = classes;
+		this.locations = locations;
+		this.subjects = subjects;
 		this.match = match;
 	}
 
 	@Override
 	public String toString() {
 		return "Student [id= " + id + "email= " + email + ", password=" + password + ", first name=" + firstName
-				+ ", last name=" + lastName + ", year=" + year + ", major=" + major + "]";
+				+ ", last name=" + lastName + ", classes=" + classes + ", locations=" + locations + ", subjects=" + subjects + "]";
 	}
 	
 	public Long getId() {
@@ -84,6 +85,7 @@ public class Student {
 	
 	public void setPassword(String password) {
 		this.password = password;
+//		
 	}
 	
 	public String getFirstName() {
@@ -101,20 +103,28 @@ public class Student {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
-	public String getYear() {
-		return year;
+
+	public String getClasses() {
+		return classes;
 	}
 	
-	public void setYear(String year) {
-		this.year = year;
+	public void setClasses(String classes) {
+		this.classes = classes;
 	}
 	
-	public String getMajor() {
-		return major;
+	public String getLocations() {
+		return locations;
 	}
 	
-	public void setMajor(String major) {
-		this.major = major;
+	public void setLocations(String locations) {
+		this.locations = locations;
+	}
+
+	public String getSubjects() {
+		return subjects;
+	}
+	
+	public void setSubjects(String subjects) {
+		this.subjects = subjects;
 	}
 }
