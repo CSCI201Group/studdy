@@ -63,6 +63,9 @@ input {
   font-family: "PT Mono", monospace;
   transition: all 250ms ease-in-out;
 }
+.questions-box{
+  margin-top: 15px;
+}
 .questions{
   color: white;
   font-family: "PT Mono", monospace;
@@ -118,4 +121,9 @@ input[type="radio"] {
 }
 #error-message{
   color: red;
+}
+#password-req{
+  font-size: 11px;
+  padding-left: 25px;
+  margin: 0;
 }

@@ -100,21 +100,62 @@ const Register = () => {
     var classes = "";
     for(var i = 0; i < allClasses.length; i++){
       if(allClasses[i].checked){
-        classes += allClasses[i].name + ",";
+        classes += "1";
+      }
+      else{
+        classes += "0";
       }
     }
     // Locations
     var locations = "";
     for(var i = 0; i < allLocations.length; i++){
       if(allLocations[i].checked){
-        locations += allLocations[i].name + ",";
+        locations += "1";
+      }
+      else{
+        locations += "0";
       }
     }
     // Subjects
     var subjects = "";
     for(var i = 0; i < allSubjects.length; i++){
       if(allSubjects[i].checked){
-        subjects += allSubjects[i].name + ",";
+        subjects += "1";
+      }
+      else{
+        subjects += "0";
+      }
+    }
+
+    // Password requirements
+    // if password has no number or has no character
+    var hasNum = false;
+    var hasUpperChar = false;
+    var hasLowerChar = false;
+    var hasSpecialChar = false;
+    for(var i = 0; i < password.length; i++){
+      // special character
+      if((password[i] >= 33 && password[i] <= 47)
+      || (password[i] >= 58 && password[i] <= 64)
+      || (password[i] >= 91 && password[i] <= 96)
+      || (password[i] >= 123 && password[i] <= 126)){
+        hasSpecialChar = true;
+      }
+      // has number
+      if(password[i] >= 48 && password[i] <= 57){
+        hasNum = true;
+      }
+      // has lower char
+      if(password[i] >= 97 && password[i] <= 122){
+        hasLowerChar = true;
+      }
+      // has upper char
+      if(password[i] >= 65 && password[i] <= 90){
+        hasUpperChar = true;
+      }
+
+      if(hasNum && hasUpperChar && hasLowerChar && hasSpecialChar){
+        break;
       }
     }
 
@@ -124,13 +165,24 @@ const Register = () => {
       setMessage("All required fields can not be empty.");
       window.scrollTo(0,0);
     }
-    // TODO: if email's end isn't @usc.edu
-    else if(email === ""){
-      
+    // if email isn't valid
+    else if(email.length < 7){
+      setMessage("Invalid email.");
+      window.scrollTo(0,0);
     }
-    // TODO: if password doesn't meet requirements
-    else if(password === ""){
-
+    // if email's end isn't @usc.edu
+    else if(email.substr(email.length-7, email.length-1) != "usc.edu"){
+      setMessage("Must be a USC email.");
+      window.scrollTo(0,0);
+    }
+    // if password isn't 8 chars
+    else if(password.length < 8){
+      setMessage("Password must be longer than 8 characters.");
+      window.scrollTo(0,0);
+    }
+    else if(!hasNum || !hasUpperChar || !hasLowerChar || !hasSpecialChar){
+      setMessage("Password does not fulfill requirements.");
+      window.scrollTo(0,0);
     }
     // else no errors, submit info
     else{
@@ -166,7 +218,6 @@ const Register = () => {
               type="email"
               name="email"
               value={email}
-              pattern=".+@usc\.edu"
               placeholder="ttrojan@usc.edu"
               onChange={handleEmailChange}
               required
@@ -174,7 +225,11 @@ const Register = () => {
           </div>
           <div className="formgroup">
             <label htmlFor="password">Password<span class="required">*</span>: </label>
-            <br />
+            <p id="password-req"><strong>Must have at least one:</strong><br/>
+              Uppercase and lowercase letter (A, z) <br/>
+              Numeric character (0-9) <br/>
+              Special character (!, %, @, #, etc.)
+            </p>
             <input
               type="password"
               name="password"
@@ -186,7 +241,7 @@ const Register = () => {
           </div>
           <div className="formgroup">
             <label htmlFor="fname">First Name<span class="required">*</span>: </label>
-            <br />
+            <br/>
             <input
               type="text"
               name="fname"
@@ -200,7 +255,7 @@ const Register = () => {
           </div>
           <div className="formgroup">
             <label htmlFor="lname">Last Name<span class="required">*</span>: </label>
-            <br />
+            <br/>
             <input
               type="text"
               name="lname"
