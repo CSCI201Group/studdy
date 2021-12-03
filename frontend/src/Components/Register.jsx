@@ -127,37 +127,8 @@ const Register = () => {
       }
     }
 
-    // Password requirements
-    // if password has no number or has no character
-    var hasNum = false;
-    var hasUpperChar = false;
-    var hasLowerChar = false;
-    var hasSpecialChar = false;
-    for(var i = 0; i < password.length; i++){
-      // special character
-      if((password[i] >= 33 && password[i] <= 47)
-      || (password[i] >= 58 && password[i] <= 64)
-      || (password[i] >= 91 && password[i] <= 96)
-      || (password[i] >= 123 && password[i] <= 126)){
-        hasSpecialChar = true;
-      }
-      // has number
-      if(password[i] >= 48 && password[i] <= 57){
-        hasNum = true;
-      }
-      // has lower char
-      if(password[i] >= 97 && password[i] <= 122){
-        hasLowerChar = true;
-      }
-      // has upper char
-      if(password[i] >= 65 && password[i] <= 90){
-        hasUpperChar = true;
-      }
-
-      if(hasNum && hasUpperChar && hasLowerChar && hasSpecialChar){
-        break;
-      }
-    }
+    // Password requirement
+    var pattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$");
 
     // DO VERIFICATION HERE
     // if any required fields is empty
@@ -180,11 +151,11 @@ const Register = () => {
       setMessage("Password must be longer than 8 characters.");
       window.scrollTo(0,0);
     }
-    else if(!hasNum || !hasUpperChar || !hasLowerChar || !hasSpecialChar){
+    // password doesn't meet security reqs
+    else if(!pattern.test(password)){
       setMessage("Password does not fulfill requirements.");
       window.scrollTo(0,0);
     }
-    // else no errors, submit info
     else{
       const toInput = { email, password, firstName, lastName, classes, locations, subjects };
       logFunc(toInput);
