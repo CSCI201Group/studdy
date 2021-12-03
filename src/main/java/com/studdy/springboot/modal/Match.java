@@ -23,7 +23,7 @@ public class Match {
     // Calculate compatibility
     private boolean compatibility(Student s1, Student s2) {
         for (int i = 0; i < s1.getClasses().length(); i++) {
-            if (s1.getClasses().charAt(i) == s2.getClasses().charAt(i)) {
+            if (s1.getClasses().charAt(i) == '1' &&  s2.getClasses().charAt(i) == '1') {
                 return true;
             }
         }

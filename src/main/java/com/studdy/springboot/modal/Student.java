@@ -27,16 +27,11 @@ public class Student {
 	private String lastName;
 
 	@Column
-<<<<<<< HEAD
-	private int year;
-
-=======
 	private String classes; // use "," (comma) as delimiter
 	
 	@Column
 	private String locations; //use "," (comma) as delimiter
-	
->>>>>>> c7f5c13fad4951c9a4599492e3ec86db35a21678
+
 	@Column
 	private String subjects; //use "," (comma) as delimiter
 
@@ -50,43 +45,40 @@ public class Student {
 
 	}
 
-<<<<<<< HEAD
-	public Student(Long id, String email, String password, String firstName, String lastName, int year, String classes, Match match) {
-=======
 	public Student(Long id, String email, String password, String firstName, String lastName, String classes, String locations, String subjects, Match match) {
->>>>>>> c7f5c13fad4951c9a4599492e3ec86db35a21678
 		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-<<<<<<< HEAD
-		this.year = year;
-		this.classes = classes;
-=======
 		this.classes = classes;
 		this.locations = locations;
 		this.subjects = subjects;
->>>>>>> c7f5c13fad4951c9a4599492e3ec86db35a21678
 		this.match = match;
 	}
 
+
 	@Override
 	public String toString() {
-<<<<<<< HEAD
-		return "Student [first name= " +  firstName + ", last name=" + lastName + ", year=" + year + ", id=" + id + ", email= " + email + ", password=" + password + "]";
+		return "Student{" +
+				"id=" + id +
+				", email='" + email + '\'' +
+				", password='" + password + '\'' +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", classes='" + classes + '\'' +
+				", locations='" + locations + '\'' +
+				", subjects='" + subjects + '\'' +
+				", match=" + match +
+				'}';
 	}
 
 	public String matchedToString () {
-		return "first name=" + firstName + ", last name=" + lastName + ", year=" + year + ", id= " + id;
+		return "first name=" + firstName + ", last name=" + lastName + ", id= " + id;
 	}
 
 	public String unmatchedToString() {
-		return "first name=" + firstName + ", last name=" + lastName + "email= " + email + ", year=" + year + ", id= " + id;
-=======
-		return "Student [id= " + id + "email= " + email + ", password=" + password + ", first name=" + firstName
-				+ ", last name=" + lastName + ", classes=" + classes + ", locations=" + locations + ", subjects=" + subjects + "]";
->>>>>>> c7f5c13fad4951c9a4599492e3ec86db35a21678
+		return "first name=" + firstName + ", last name=" + lastName + "email= " + email + ", id= " + id;
 	}
 	
 	public Long getId() {
@@ -111,7 +103,6 @@ public class Student {
 	
 	public void setPassword(String password) {
 		this.password = password;
-//		
 	}
 	
 	public String getFirstName() {
@@ -133,23 +124,8 @@ public class Student {
 	public String getClasses() {
 		return classes;
 	}
-	
-<<<<<<< HEAD
-	public int getYear() {
-		return year;
-	}
-	
-	public void setYear(int year) {
-		this.year = year;
-	}
 
-	public String getClasses() {
-		return classes;
-	}
 
-	public void setClasses(String classes) {
-		this.classes = classes;
-=======
 	public void setClasses(String classes) {
 		this.classes = classes;
 	}
@@ -168,6 +144,5 @@ public class Student {
 	
 	public void setSubjects(String subjects) {
 		this.subjects = subjects;
->>>>>>> c7f5c13fad4951c9a4599492e3ec86db35a21678
 	}
 }
