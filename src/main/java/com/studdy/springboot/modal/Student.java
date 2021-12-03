@@ -27,10 +27,7 @@ public class Student {
 	private String lastName;
 	
 	@Column
-	private String year;
-	
-	@Column
-	private String major;
+	private int year;
 
 	@Column
 	private String classes; // String of 1's and 0's representing true false
@@ -45,21 +42,28 @@ public class Student {
 
 	}
 
-	public Student(Long id, String email, String password, String firstName, String lastName, String year, String major, Match match) {
+	public Student(Long id, String email, String password, String firstName, String lastName, int year, String classes, Match match) {
 		this.id = id;
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.year = year;
-		this.major = major;
+		this.classes = classes;
 		this.match = match;
 	}
 
 	@Override
 	public String toString() {
-		return "Student [id= " + id + "email= " + email + ", password=" + password + ", first name=" + firstName
-				+ ", last name=" + lastName + ", year=" + year + ", major=" + major + "]";
+		return "Student [first name= " +  firstName + ", last name=" + lastName + ", year=" + year + ", id=" + id + ", email= " + email + ", password=" + password + "]";
+	}
+
+	public String matchedToString () {
+		return "first name=" + firstName + ", last name=" + lastName + ", year=" + year + ", id= " + id;
+	}
+
+	public String unmatchedToString() {
+		return "first name=" + firstName + ", last name=" + lastName + "email= " + email + ", year=" + year + ", id= " + id;
 	}
 	
 	public Long getId() {
@@ -102,19 +106,19 @@ public class Student {
 		this.lastName = lastName;
 	}
 	
-	public String getYear() {
+	public int getYear() {
 		return year;
 	}
 	
-	public void setYear(String year) {
+	public void setYear(int year) {
 		this.year = year;
 	}
-	
-	public String getMajor() {
-		return major;
+
+	public String getClasses() {
+		return classes;
 	}
-	
-	public void setMajor(String major) {
-		this.major = major;
+
+	public void setClasses(String classes) {
+		this.classes = classes;
 	}
 }

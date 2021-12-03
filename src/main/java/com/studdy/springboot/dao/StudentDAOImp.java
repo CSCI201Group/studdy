@@ -26,6 +26,12 @@ public class StudentDAOImp implements StudentDAO {
 		Student student = currSession.get(Student.class, id);
 		return student;
 	}
+
+	public Student get(String email) {
+		Session currSession = entityManager.unwrap(Session.class);
+		Student student = currSession.get(Student.class, email);
+		return student;
+	}
 	
 	@Override
 	public void save(Student student) {

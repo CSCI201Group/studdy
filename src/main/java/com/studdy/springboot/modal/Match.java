@@ -21,8 +21,14 @@ public class Match {
     }
 
     // Calculate compatibility
-    private double compatibility(Student s1, Student s2) {
-        return 0.5;
+    private boolean compatibility(Student s1, Student s2) {
+        for (int i = 0; i < s1.getClasses().length(); i++) {
+            if (s1.getClasses().charAt(i) == s2.getClasses().charAt(i)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // Return list of matches
@@ -53,7 +59,7 @@ public class Match {
                 Student temp = studentController.get(currId);
                 currId++;
 
-                if (compatibility(student, temp) > 0.5) {
+                if (compatibility(student, temp)) {
                     potentialMatchList.add(temp);
                     count++;
                 }
