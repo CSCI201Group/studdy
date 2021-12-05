@@ -44,6 +44,9 @@ public class Student {
 	private static final int[] locationList = {102, 103, 104, 170, 201, 270};
 
 	@Transient
+	private static final int[] subjectList = {102, 103, 104, 170, 201, 270};
+
+	@Transient
 	private Match match;
 
 	public Student() {
