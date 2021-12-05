@@ -1,25 +1,24 @@
 package com.studdy.springboot.modal;
 
 import com.studdy.springboot.controller.StudentController;
+import com.studdy.springboot.dao.StudentDAOImp;
 import com.studdy.springboot.service.StudentServiceImp;
 
 import java.util.ArrayList;
 
 public class Match {
-    private final StudentController studentController;
-    private Long id;
+    private StudentDAOImp DAO;
     private ArrayList<Student> matchList;
     private ArrayList<Student> potentialMatchList;
     private Long currId;
     private int batchSize;
 
-    public Match(StudentController studentController, Long id) {
-        this.studentController = studentController;
-        this.id = id;
+    public Match(StudentDAOImp DAO) {
+        this.DAO = DAO;
         this.matchList = new ArrayList<>();
         this.potentialMatchList = new ArrayList<>();
         this.currId = 0L;
-        this.batchSize = 0;
+        this.batchSize = 1;
     }
 
     // Calculate compatibility
@@ -39,13 +38,13 @@ public class Match {
     }
 
     // Add given student to list of matches
-    public void add(Long id) {
-        matchList.add(studentController.get(id));
+    public void add(Student s) {
+        matchList.add(s);
     }
 
     // Remove student with given id from list of matches
-    public void remove(Long id) {
-        matchList.remove(studentController.get(id));
+    public void remove(Student s) {
+        matchList.remove(s);
     }
 
     // Get potential match
@@ -58,7 +57,7 @@ public class Match {
                     break;
                 }
 
-                Student temp = studentController.get(currId);
+                Student temp = DAO.get(currId);
                 currId++;
 
                 if (compatibility(student, temp)) {
@@ -74,12 +73,12 @@ public class Match {
     }
 
     // Return list of mutuals
-    public ArrayList<Student> getMutuals() {
+    public ArrayList<Student> getMutuals(Student s1) {
         ArrayList<Student> mutuals = new ArrayList<>();
 
-        for (Student s : matchList) {
-            if (s.getMatch().isMatched(id)) {
-                mutuals.add(s);
+        for (Student tempS : matchList) {
+            if (tempS.getMatch().isMatched(s1)) {
+                mutuals.add(tempS);
             }
         }
 
@@ -87,8 +86,8 @@ public class Match {
     }
 
     // Check if this.student matched with student with given id
-    public boolean isMatched(Long id) {
-        if (matchList.contains(studentController.get(id))) {
+    public boolean isMatched(Student s) {
+        if (matchList.contains(s)) {
             return true;
         }
 
