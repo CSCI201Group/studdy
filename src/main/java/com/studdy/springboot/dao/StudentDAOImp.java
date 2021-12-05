@@ -45,4 +45,5 @@ public class StudentDAOImp implements StudentDAO {
 		Student student = currSession.get(Student.class, id);
 		currSession.delete(student);
 	}
+	
 }

@@ -9,16 +9,12 @@ import java.util.ArrayList;
 public class Match {
     private StudentDAOImp DAO;
     private ArrayList<Student> matchList;
-    private ArrayList<Student> potentialMatchList;
     private Long currId;
-    private int batchSize;
 
     public Match(StudentDAOImp DAO) {
         this.DAO = DAO;
         this.matchList = new ArrayList<>();
-        this.potentialMatchList = new ArrayList<>();
         this.currId = 0L;
-        this.batchSize = 1;
     }
 
     // Calculate compatibility
@@ -49,26 +45,17 @@ public class Match {
 
     // Get potential match
     public Student getPotentialNext(Student student) {
-        if (potentialMatchList.isEmpty()) {
-            int count = 0;
+        Student temp;
 
-            while (true) {
-                if (count >= batchSize) {
-                    break;
-                }
+        while (true) {
+            temp = DAO.get(currId);
+            currId++;
 
-                Student temp = DAO.get(currId);
-                currId++;
-
-                if (compatibility(student, temp)) {
-                    potentialMatchList.add(temp);
-                    count++;
-                }
+            if (compatibility(student, temp)) {
+                break;
             }
         }
 
-        Student temp = potentialMatchList.get(0);
-        potentialMatchList.remove(0);
         return temp;
     }
 
