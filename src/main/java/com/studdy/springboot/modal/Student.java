@@ -34,6 +34,9 @@ public class Student {
 
 	@Column
 	private String subjects; //use "," (comma) as delimiter
+	
+	@Column
+	private String schedule;
 
 	@Transient
 	private static final int[] classList = {102, 103, 104, 170, 201, 270};
@@ -45,7 +48,7 @@ public class Student {
 
 	}
 
-	public Student(Long id, String email, String password, String firstName, String lastName, String classes, String locations, String subjects, Match match) {
+	public Student(Long id, String email, String password, String firstName, String lastName, String classes, String locations, String subjects, String schedule, Match match) {
 		this.id = id;
 		this.email = email;
 		this.password = password;
@@ -54,6 +57,7 @@ public class Student {
 		this.classes = classes;
 		this.locations = locations;
 		this.subjects = subjects;
+		this.schedule = schedule;
 		this.match = match;
 	}
 
@@ -69,6 +73,7 @@ public class Student {
 				", classes='" + classes + '\'' +
 				", locations='" + locations + '\'' +
 				", subjects='" + subjects + '\'' +
+				", schedule='" + schedule + '\'' +
 				", match=" + match +
 				'}';
 	}
@@ -125,7 +130,6 @@ public class Student {
 		return classes;
 	}
 
-
 	public void setClasses(String classes) {
 		this.classes = classes;
 	}
@@ -144,5 +148,13 @@ public class Student {
 	
 	public void setSubjects(String subjects) {
 		this.subjects = subjects;
+	}
+	
+	public String getSchedule() {
+		return schedule;
+	}
+	
+	public void setSchedule(String schedule) {
+		this.schedule = schedule;
 	}
 }

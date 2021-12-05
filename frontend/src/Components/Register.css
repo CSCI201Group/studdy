@@ -82,17 +82,10 @@ input {
   width: 100%;
 }
 .eachQ {
-  height: 100px;
   width: 100%;
   max-width: 1000px;
   margin: auto;
   margin-bottom: 15px;
-}
-input[type="radio"] {
-  border: 0px;
-  width: 70%;
-  height: 1em;
-  display: inline;
 }
 .choice{
   width: 20%;
@@ -126,4 +119,94 @@ input[type="radio"] {
   font-size: 11px;
   padding-left: 25px;
   margin: 0;
+}
+#schedule{
+  width: 300px;
+  margin: auto;
+  color: white;
+  display: flex;
+}
+.day{
+  margin-bottom: 4px;
+}
+.dropdowns{
+  height: 250px;
+}
+.eachDay{
+  display: flex;
+  position: relative;
+}
+.from{
+  display: flex;
+  margin-left: 20px;
+  margin-bottom: 4.2px;
+}
+.to{
+  display: flex;
+  padding-left: 100px;
+  margin-bottom: 4.2px;
+}
+.fromDropdown{
+  background-color: #7c9661;
+  color: black;
+  border: 1px solid black;
+  width: 70px;
+  text-align: center;
+  margin-left: 50px;
+  position: absolute;
+  transition: 0.3s;
+}
+.toDropdown{
+  background-color: #7c9661;
+  color: black;
+  border: 1px solid black;
+  width: 70px;
+  text-align: center;
+  margin-left: 30px;
+  position: absolute;
+  transition: 0.3s;
+}
+.fromDropdown:hover, .toDropdown:hover{
+  background-color: #a1c181;
+  transition: 0.3s;
+}
+.is-selected{
+  background-color: #7c9661;
+  color: white;
+  width: 70px;
+  text-align: center;
+  transition: 0.3s;
+}
+.Dropdown-option:hover{
+  background-color: #7c9661;
+  color: white;
+  transition: 0.2s;
+}
+.Dropdown-menu{
+  height: 150px;
+  overflow-y: scroll;
+}
+::-webkit-scrollbar{
+  display: none;
+}
+#monday{
+  z-index: 7;
+}
+#tuesday{
+  z-index: 6;
+}
+#wednesday{
+  z-index: 5;
+}
+#thursday{
+  z-index: 4;
+}
+#friday{
+  z-index: 3;
+}
+#saturday{
+  z-index: 2;
+}
+#sunday{
+  z-index: 1;
 }
