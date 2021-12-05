@@ -5,7 +5,7 @@ import com.studdy.springboot.modal.Student;
 
 public interface StudentService {
 	List<Student> get();
-	Student get(Long id);
+	Student get(int id);
 	void save(Student student);
-	void delete(Long id);
+	void delete(int id);
 }

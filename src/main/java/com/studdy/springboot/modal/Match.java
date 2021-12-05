@@ -9,12 +9,12 @@ import java.util.ArrayList;
 public class Match {
     private StudentDAOImp DAO;
     private ArrayList<Student> matchList;
-    private Long currId;
+    private int currId;
 
     public Match(StudentDAOImp DAO) {
         this.DAO = DAO;
         this.matchList = new ArrayList<>();
-        this.currId = 0L;
+        this.currId = 0;
     }
 
     // Calculate compatibility
@@ -44,11 +44,11 @@ public class Match {
     }
 
     // Get potential match
-    public Student getPotentialNext(Student student) {
+    public Student getPotentialNext(Student student, ArrayList<Student> studentList) {
         Student temp;
 
         while (true) {
-            temp = DAO.get(currId);
+            temp = studentList.get(currId);
             currId++;
 
             if (compatibility(student, temp)) {

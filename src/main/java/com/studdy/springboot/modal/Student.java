@@ -11,7 +11,7 @@ public class Student {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
 	@Column
-	private Long id;
+	private int id;
 	
 	@Column
 	private String email;
@@ -53,7 +53,7 @@ public class Student {
 
 	}
 
-	public Student(Long id, String email, String password, String firstName, String lastName, String classes, String locations, String subjects, String schedule, Match match) {
+	public Student(int id, String email, String password, String firstName, String lastName, String classes, String locations, String subjects, String schedule, Match match) {
 		this.id = id;
 		this.email = email;
 		this.password = password;
@@ -91,11 +91,11 @@ public class Student {
 		return "first name=" + firstName + ", last name=" + lastName + "email= " + email + ", id= " + id;
 	}
 	
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 	
-	public void setID(Long id) {
+	public void setID(int id) {
 		this.id = id;
 	}
 	

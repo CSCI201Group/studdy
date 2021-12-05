@@ -21,7 +21,7 @@ public class StudentServiceImp implements StudentService {
 	
 	@Transactional
 	@Override
-	public Student get(Long id) {
+	public Student get(int id) {
 		return studentDao.get(id);
 	}
 	
@@ -33,7 +33,7 @@ public class StudentServiceImp implements StudentService {
 	
 	@Transactional
 	@Override
-	public void delete(Long id) {
+	public void delete(int id) {
 		studentDao.delete(id);
 	}
 }

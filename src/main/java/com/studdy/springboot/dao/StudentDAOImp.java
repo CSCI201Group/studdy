@@ -21,7 +21,7 @@ public class StudentDAOImp implements StudentDAO {
 	}
 	
 	@Override
-	public Student get(Long id) {
+	public Student get(int id) {
 		Session currSession = entityManager.unwrap(Session.class);
 		Student student = currSession.get(Student.class, id);
 		return student;
@@ -40,10 +40,10 @@ public class StudentDAOImp implements StudentDAO {
 	}
 	
 	@Override
-	public void delete(Long id) {
+	public void delete(int id) {
 		Session currSession = entityManager.unwrap(Session.class);
 		Student student = currSession.get(Student.class, id);
 		currSession.delete(student);
 	}
-	
+
 }
