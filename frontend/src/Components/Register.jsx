@@ -6,15 +6,15 @@ import {
   Outlet,
   Link,
 } from "react-router-dom";
+import Dropdown from 'react-dropdown';
 import "./Register.css";
 const Register = () => {
-  const [firstLoad, setLoad] = React.useState(true);
-
   /** All of the setters */
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
+
   const allClasses = [
     { name: "CSCI102", checked: false },
     { name: "CSCI103", checked: false },
@@ -37,7 +37,22 @@ const Register = () => {
     { name: "Projects", checked: false },
     { name: "Other", checked: false },
   ];
+  const userAvailability = [
+    { name: "Mon", from: "", to: "" },
+    { name: "Tues", from: "", to: "" },
+    { name: "Wed", from: "", to: "" },
+    { name: "Thur", from: "", to: "" },
+    { name: "Fri", from: "", to: "" },
+    { name: "Sat", from: "", to: "" },
+    { name: "Sun", from: "", to: "" },
+  ];
+  const allTimes = [
+    '0:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'
+  ];
 
+  const [message, setMessage] = React.useState("");
+
+  // ----- HANDLERS -----
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handlePasswordChange = (event) => setPassword(event.target.value);
   const handleFirstNameChange = (event) => setFirstName(event.target.value);
@@ -69,12 +84,59 @@ const Register = () => {
       }
     }
   }
+  // Monday
+  const handleMondayFrom = (event) => {
+    userAvailability[0].from = event.value;
+  }
+  const handleMondayTo = (event) => {
+    userAvailability[0].to = event.value;
+  }
+  // Tuesday
+  const handleTuesdayFrom = (event) => {
+    userAvailability[1].from = event.value;
+  }
+  const handleTuesdayTo = (event) => {
+    userAvailability[1].to = event.value;
+  }
+  // Wednesday
+  const handleWednesdayFrom = (event) => {
+    userAvailability[2].from = event.value;
+  }
+  const handleWednesdayTo = (event) => {
+    userAvailability[2].to = event.value;
+  }
+  // Thursday
+  const handleThursdayFrom = (event) => {
+    userAvailability[3].from = event.value;
+  }
+  const handleThursdayTo = (event) => {
+    userAvailability[3].to = event.value;
+  }
+  // Friday
+  const handleFridayFrom = (event) => {
+    userAvailability[4].from = event.value;
+  }
+  const handleFridayTo = (event) => {
+    userAvailability[4].to = event.value;
+  }
+  // Saturday
+  const handleSaturdayFrom = (event) => {
+    userAvailability[5].from = event.value;
+  }
+  const handleSaturdayTo = (event) => {
+    userAvailability[5].to = event.value;
+  }
+  // Sunday
+  const handleSundayFrom = (event) => {
+    userAvailability[6].from = event.value;
+  }
+  const handleSundayTo = (event) => {
+    userAvailability[6].to = event.value;
+  }
+  // ----- END OF HANDLERS -----
 
-  const [message, setMessage] = React.useState("");
-
-  /**Sends and links to db to enter this student */
+  // Send to DB
   async function logFunc(toInput) {
-    console.log(toInput);
     const response = await fetch("/api/student", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, *cors, same-origin
@@ -89,52 +151,94 @@ const Register = () => {
       body: JSON.stringify(toInput), // body data type must match "Content-Type" header
     });
     let body = await response.json();
-    console.log(body.id);
     // TODO: if successfully logged in, redirect to next page
+
   }
 
   //makes toInput object and sends to logFunc
   const handleSubmit = (event) => {
     event.preventDefault();
+
     // Classes
     var classes = "";
     for(var i = 0; i < allClasses.length; i++){
       if(allClasses[i].checked){
-        classes += allClasses[i].name + ",";
+        classes += "1";
+      }
+      else{
+        classes += "0";
       }
     }
     // Locations
     var locations = "";
-    for(var i = 0; i < allLocations.length; i++){
-      if(allLocations[i].checked){
-        locations += allLocations[i].name + ",";
+    for(var j = 0; j < allLocations.length; j++){
+      if(allLocations[j].checked){
+        locations += "1";
+      }
+      else{
+        locations += "0";
       }
     }
+
     // Subjects
     var subjects = "";
-    for(var i = 0; i < allSubjects.length; i++){
-      if(allSubjects[i].checked){
-        subjects += allSubjects[i].name + ",";
+    for(var k = 0; k < allSubjects.length; k++){
+      if(allSubjects[k].checked){
+        subjects += "1";
+      }
+      else{
+        subjects += "0";
       }
     }
 
-    // DO VERIFICATION HERE
+    // Schedule
+    var schedule = "";
+    var invalidSched = false;
+    for(var l = 0; l < userAvailability.length; l++){
+      var fromTime = userAvailability[l].from.substr(0, userAvailability[l].from.length-3);
+      var toTime = userAvailability[l].to.substr(0, userAvailability[l].to.length-3);
+      if(userAvailability[l].from === ""){
+        fromTime = "0";
+      }
+      if(userAvailability[l].to === ""){
+        toTime = "0";
+      }
+      if(parseInt(toTime) < parseInt(fromTime)){
+        invalidSched = true;
+      }
+      schedule += userAvailability[l].name + fromTime + "-" + toTime + ",";
+    }
+
+    // Password requirement
+    var pattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$");
+
     // if any required fields is empty
     if(email === "" || password === "" || firstName === "" || lastName === ""){
-      setMessage("All required fields can not be empty.");
+      setMessage("All required fields cannot be empty.");
       window.scrollTo(0,0);
     }
-    // TODO: if email's end isn't @usc.edu
-    else if(email === ""){
-      
+    // if email isn't valid
+    else if(email.length < 7){
+      setMessage("Invalid email.");
+      window.scrollTo(0,0);
     }
-    // TODO: if password doesn't meet requirements
-    else if(password === ""){
-
+    // if email's end isn't @usc.edu
+    else if(email.substr(email.length-8, email.length-1) !== "@usc.edu"){
+      setMessage("Must be a USC email.");
+      window.scrollTo(0,0);
     }
-    // else no errors, submit info
+    // if password isn't 8 chars
+    else if(password.length < 8){
+      setMessage("Password must be longer than 8 characters.");
+      window.scrollTo(0,0);
+    }
+    // password doesn't meet security reqs
+    else if(!pattern.test(password)){
+      setMessage("Password does not fulfill requirements.");
+      window.scrollTo(0,0);
+    }
     else{
-      const toInput = { email, password, firstName, lastName, classes, locations, subjects };
+      const toInput = { email, password, firstName, lastName, classes, locations, subjects, schedule };
       logFunc(toInput);
       //reset inputs
       setEmail("");
@@ -160,21 +264,24 @@ const Register = () => {
         </p>
         <div id="right-box">
           <div className="formgroup">
-            <label htmlFor="email">Email<span class="required">*</span>: </label>
+            <label htmlFor="email">Email<span className="required">*</span>: </label>
             <br />
             <input
               type="email"
               name="email"
               value={email}
-              pattern=".+@usc\.edu"
               placeholder="ttrojan@usc.edu"
               onChange={handleEmailChange}
               required
             />
           </div>
           <div className="formgroup">
-            <label htmlFor="password">Password<span class="required">*</span>: </label>
-            <br />
+            <label htmlFor="password">Password<span className="required">*</span>: </label>
+            <p id="password-req"><strong>Must have at least one:</strong><br/>
+              Uppercase and lowercase letter (A, z) <br/>
+              Numeric character (0-9) <br/>
+              Special character (!, %, @, #, etc.)
+            </p>
             <input
               type="password"
               name="password"
@@ -185,8 +292,8 @@ const Register = () => {
             />
           </div>
           <div className="formgroup">
-            <label htmlFor="fname">First Name<span class="required">*</span>: </label>
-            <br />
+            <label htmlFor="fname">First Name<span className="required">*</span>: </label>
+            <br/>
             <input
               type="text"
               name="fname"
@@ -199,8 +306,8 @@ const Register = () => {
             />
           </div>
           <div className="formgroup">
-            <label htmlFor="lname">Last Name<span class="required">*</span>: </label>
-            <br />
+            <label htmlFor="lname">Last Name<span className="required">*</span>: </label>
+            <br/>
             <input
               type="text"
               name="lname"
@@ -213,10 +320,10 @@ const Register = () => {
             />
           </div>
           <br/>
-          <span id="required-note"><span class="required">*</span> = Required fields</span>
+          <span id="required-note"><span className="required">*</span> = Required fields</span>
         </div>
       </div>
-      <div className="clearFloat"></div>
+
       <div className="questions-box">
         <h3 className="questions">Questions: </h3>
         <form onSubmit={handleSubmit}>
@@ -363,7 +470,6 @@ const Register = () => {
               </label>
             </div>
           </div>
-
           <div className="clearFloat"></div>
           <div className="eachQ">
             <p className="questions">
@@ -428,6 +534,186 @@ const Register = () => {
                   onChange={handleSubjectChange}
                 />
               </label>
+            </div>
+          </div>
+          <div className="clearFloat"></div>
+          <div className="eachQ">
+            <p className="questions">
+              Please select a time range for you availability:
+            </p>
+            <div id="schedule">
+              <div className="daysOfWeek">
+                <div className="day">Monday:</div>
+                <div className="day">Tuesday:</div>
+                <div className="day">Wednesday:</div>
+                <div className="day">Thursday:</div>
+                <div className="day">Friday:</div>
+                <div className="day">Saturday:</div>
+                <div className="day">Sunday:</div>
+              </div>
+              <div className="dropdowns">
+                {/* Monday */}
+                <div className="eachDay" id="monday">
+                  <div className="from">
+                    From:
+                    <Dropdown
+                      className="fromDropdown"
+                      htmlFor="MondayFrom"
+                      options={allTimes}
+                      placeholder="Select"
+                      onChange={handleMondayFrom}
+                    />
+                  </div>
+                  <div className="to">
+                    To:
+                    <Dropdown
+                      className="toDropdown"
+                      htmlFor="MondayTo"
+                      options={allTimes}
+                      placeholder="Select"
+                      onChange={handleMondayTo}
+                    />
+                  </div>
+                </div>
+                {/* Tuesday */}
+                <div className="eachDay" id="tuesday">
+                  <div className="from">
+                    From: 
+                    <Dropdown
+                      className="fromDropdown"
+                      htmlFor="TuesdayFrom"
+                      options={allTimes}
+                      placeholder="Select"
+                      onChange={handleTuesdayFrom}
+                    />
+                  </div>
+                  <div className="to">
+                    To:
+                    <Dropdown
+                      className="toDropdown"
+                      htmlFor="TuesdayTo"
+                      options={allTimes}
+                      placeholder="Select"
+                      onChange={handleTuesdayTo}
+                    />
+                  </div>
+                </div>
+                {/* Wednesday */}
+                <div className="eachDay" id="wednesday">
+                  <div className="from">
+                    From:
+                    <Dropdown
+                      className="fromDropdown"
+                      htmlFor="WednesdayFrom"
+                      options={allTimes}
+                      placeholder="Select"
+                      onChange={handleWednesdayFrom}
+                    />
+                  </div>
+                  <div className="to">
+                    To:
+                    <Dropdown
+                      className="toDropdown"
+                      htmlFor="WednesdayTo"
+                      options={allTimes}
+                      placeholder="Select"
+                      onChange={handleWednesdayTo}
+                    />
+                  </div>
+                </div>
+                {/* Thursday */}
+                <div className="eachDay" id="thursday">
+                  <div className="from">
+                    From:
+                    <Dropdown
+                      className="fromDropdown"
+                      htmlFor="ThursdayFrom"
+                      options={allTimes}
+                      placeholder="Select"
+                      onChange={handleThursdayFrom}
+                    />
+                  </div>
+                  <div className="to">
+                    To:
+                    <Dropdown
+                      className="toDropdown"
+                      htmlFor="ThursdayTo"
+                      options={allTimes}
+                      placeholder="Select"
+                      onChange={handleThursdayTo}
+                    />
+                  </div>
+                </div>
+                {/* Friday */}
+                <div className="eachDay" id="friday">
+                  <div className="from">
+                    From:
+                      <Dropdown
+                        className="fromDropdown"
+                        htmlFor="FridayFrom"
+                        options={allTimes}
+                        placeholder="Select"
+                        onChange={handleFridayFrom}
+                      />
+                  </div>
+                  <div className="to">
+                    To:
+                    <Dropdown
+                      className="toDropdown"
+                      htmlFor="FridayTo"
+                      options={allTimes}
+                      placeholder="Select"
+                      onChange={handleFridayTo}
+                    />
+                  </div>
+                </div>
+                {/* Saturday */}
+                <div className="eachDay" id="saturday">
+                  <div className="from">
+                    From:
+                    <Dropdown
+                      className="fromDropdown"
+                      htmlFor="SaturdayFrom"
+                      options={allTimes}
+                      placeholder="Select"
+                      onChange={handleSaturdayFrom}
+                    />
+                  </div>
+                  <div className="to">
+                    To:
+                    <Dropdown
+                      className="toDropdown"
+                      htmlFor="SaturdayTo"
+                      options={allTimes}
+                      placeholder="Select"
+                      onChange={handleSaturdayTo}
+                    />
+                  </div>
+                </div>
+                {/* Sunday */}
+                <div className="eachDay" id="sunday">
+                  <div className="from">
+                    From:
+                    <Dropdown
+                      className="fromDropdown"
+                      htmlFor="SundayFrom"
+                      options={allTimes}
+                      placeholder="Select"
+                      onChange={handleSundayFrom}
+                    />
+                  </div>
+                  <div className="to">
+                    To:
+                    <Dropdown
+                      className="toDropdown"
+                      htmlFor="SundayTo"
+                      options={allTimes}
+                      placeholder="Select"
+                      onChange={handleSundayTo}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <label htmlFor="submitButton">
