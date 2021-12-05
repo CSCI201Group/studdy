@@ -3,7 +3,6 @@ package com.studdy.springboot.modal;
 //import java.sql.Date;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 
 @Entity
 @Table(name = "students")
@@ -144,5 +143,13 @@ public class Student {
 	
 	public void setSubjects(String subjects) {
 		this.subjects = subjects;
+	}
+
+	public Match getMatch() {
+		return match;
+	}
+
+	public void setMatch(Match match) {
+		this.match = match;
 	}
 }

@@ -7,13 +7,15 @@ import java.util.ArrayList;
 
 public class Match {
     private final StudentController studentController;
+    private Long id;
     private ArrayList<Student> matchList;
     private ArrayList<Student> potentialMatchList;
     private Long currId;
     private int batchSize;
 
-    public Match(StudentController studentController) {
+    public Match(StudentController studentController, Long id) {
         this.studentController = studentController;
+        this.id = id;
         this.matchList = new ArrayList<>();
         this.potentialMatchList = new ArrayList<>();
         this.currId = 0L;
@@ -69,6 +71,19 @@ public class Match {
         Student temp = potentialMatchList.get(0);
         potentialMatchList.remove(0);
         return temp;
+    }
+
+    // Return list of mutuals
+    public ArrayList<Student> getMutuals() {
+        ArrayList<Student> mutuals = new ArrayList<>();
+
+        for (Student s : matchList) {
+            if (s.getMatch().isMatched(id)) {
+                mutuals.add(s);
+            }
+        }
+
+        return mutuals;
     }
 
     // Check if this.student matched with student with given id
