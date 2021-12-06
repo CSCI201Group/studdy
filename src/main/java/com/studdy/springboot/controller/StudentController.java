@@ -2,6 +2,8 @@ package com.studdy.springboot.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,6 +56,7 @@ public class StudentController {
 		return student;
 	}
 
+	// Add s2 to matchlist of s1
 	@GetMapping("/student/add/{e1}/{e2}")
 	public void add(@PathVariable String e1, @PathVariable String e2) {
 		Student s1 = studentService.getEmail(e1);
@@ -62,6 +65,7 @@ public class StudentController {
 		s1.getMatch().add(s2);
 	}
 
+	// Get a compatible student for student s
 	@GetMapping("/student/potential/{e}")
 	public Student GetPotentialMatch(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
@@ -69,6 +73,7 @@ public class StudentController {
 		return s.getMatch().getPotentialNext(s, (ArrayList) get());
 	}
 
+	// Get list of mutuals for student s
 	@GetMapping("/student/mutual/{e}")
 	public ArrayList<Student> getMutuals(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
@@ -76,6 +81,7 @@ public class StudentController {
 		return s.getMatch().getMutuals(s);
 	}
 
+	// Check if s2 matches with s1
 	@GetMapping("/student/match/{e}")
 	public boolean isMatched(@PathVariable String e1, @PathVariable String e2) {
 		Student s1 = studentService.getEmail(e1);
@@ -84,4 +90,28 @@ public class StudentController {
 		return s1.getMatch().isMatched(s2);
 	}
 
+	// Save s's matches into database
+	@GetMapping("/student/save/{e}")
+	public void saveMatches(@PathVariable String e) {
+		Student s = studentService.getEmail(e);
+		s.saveMatches();
+	}
+
+	// Load s's matches into match class
+	@GetMapping("/student/load/{e}")
+	public void loadMatches(@PathVariable String e) {
+		Student s = studentService.getEmail(e);
+		String matchString = s.getMatchList();
+
+		Scanner sc = new Scanner(matchString);
+		sc.useDelimiter(",");
+
+		ArrayList<Student> sList = new ArrayList<>();
+
+		while (sc.hasNext()) {
+			sList.add(studentService.getEmail(sc.next()));
+		}
+
+		s.getMatch().setMatchList(sList);
+	}
 }

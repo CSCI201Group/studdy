@@ -31,6 +31,21 @@ public class Match {
         return matchList;
     }
 
+    public void setMatchList(ArrayList<Student> matchList) {
+        this.matchList = matchList;
+    }
+
+    // Get string of matches' email
+    public String getMatchString() {
+        String emails = "";
+
+        for (Student s : matchList) {
+            emails = emails + s.getEmail() + ",";
+        }
+
+        return emails;
+    }
+
     // Add given student to list of matches
     public void add(Student s) {
         matchList.add(s);

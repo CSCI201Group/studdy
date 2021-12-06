@@ -37,6 +37,9 @@ public class Student {
 	@Column
 	private String schedule; // Numbers separated by , e.g. 8,10,9,13 is Mon 8-10, Tue 9-13
 
+	@Column
+	private String matchList;
+
 	@Transient
 	private static final int[] classList = {102, 103, 104, 170, 201, 270};
 
@@ -83,14 +86,18 @@ public class Student {
 				'}';
 	}
 
-	public String matchedToString () {
-		return "first name=" + firstName + ", last name=" + lastName + ", id= " + id;
+	public void saveMatches() {
+		matchList = match.getMatchString();
 	}
 
-	public String unmatchedToString() {
-		return "first name=" + firstName + ", last name=" + lastName + "email= " + email + ", id= " + id;
+	public String getMatchList() {
+		return matchList;
 	}
-	
+
+	public void setMatchList(String matchList) {
+		this.matchList = matchList;
+	}
+
 	public int getId() {
 		return id;
 	}
