@@ -30,7 +30,7 @@ const Mutuals = () => {
   function parseLocation(locations){
     var result = "";
     for(var i = 0; i < locations.length; i++){
-      if(locations[i] == "1"){
+      if(locations[i] === "1"){
         result += allLocations[i] + ", ";
       }
     }
@@ -40,18 +40,32 @@ const Mutuals = () => {
   function parseSubject(subjects){
     var result = "";
     for(var i = 0; i < subjects.length; i++){
-      if(subjects[i] == "1"){
+      if(subjects[i] === "1"){
         result += allSubjects[i] + ", ";
       }
     }
     return result.substr(0, result.length-2);
   }
+  // Schedule parser
+  function parseSchedule(schedule){
+    var result = "";
+    for(var i = 0; i < schedule.length; i++){
+      if(schedule[i] === ","){
+        result += "\n";
+      }
+      else{
+        result += schedule[i];
+      }
+    }
+    console.log(result);
+    return result;
+  }
 
   // Request from DB
   async function load() {
     var email = "sthuynh@usc.edu";
-    let response = await fetch(`/api/student/mutual/${email}`);
-    console.log(response);
+    // let response = await fetch(`/api/student/mutual/${email}`);
+    let response = await fetch(`/api/student/`);
     let body = await response.json();
     updateMutualList(body);
   }
@@ -80,6 +94,7 @@ const Mutuals = () => {
             <div className="row-item classes" key={row.classes}>{parseClass(row.classes)}</div>
             <div className="row-item locations" key={row.locations}>{parseLocation(row.locations)}</div>
             <div className="row-item subjects" key={row.subjects}>{parseSubject(row.subjects)}</div>
+            <div className="row-item schedule" key={row.schedule}>{parseSchedule(row.schedule)}</div>
           </div>
         ))}
       </div>

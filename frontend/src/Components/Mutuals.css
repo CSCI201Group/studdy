@@ -13,7 +13,7 @@
     margin: auto;
     background-color: #a1c181;
     border-radius: 15px;
-
+    font-family: "PT Mono", monospace;
 }
 .row{
     display: flex;
@@ -24,8 +24,8 @@
     transition: 0.2s;
 }
 .row-item{
-    width: 18%;
+    width: 14.66%;
     margin: 2%;
     display: flex;
-    overflow-wrap: break-word;
+    overflow-x: scroll;
 }
