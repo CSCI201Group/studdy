@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import Profile from "./Profile";
+import Login from "./Login";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Outlet,
   Link,
+  useNavigate,
 } from "react-router-dom";
 import Dropdown from 'react-dropdown';
 import "./Register.css";
@@ -53,6 +54,7 @@ const Register = () => {
   ];
 
   const [message, setMessage] = React.useState("");
+  const navigate = useNavigate() //used to go to swipes page
 
   // ----- HANDLERS -----
   const handleEmailChange = (event) => setEmail(event.target.value);
@@ -154,8 +156,10 @@ const Register = () => {
       body: JSON.stringify(toInput), // body data type must match "Content-Type" header
     });
     let body = await response.json();
-    // TODO: if successfully logged in, redirect to next page
-
+    // TODO: if successfully logged in, redirect to swipes
+    // if(body){
+    //   navigate("/Swipes");
+    // }
   }
 
   //makes toInput object and sends to logFunc
@@ -255,10 +259,12 @@ const Register = () => {
     <div>
       <h1 id="title">Studdy</h1>
       <div id="top-box">
+        <div id="login-link">
+          <a href="/">Already have an account? Login!</a>
+        </div>
         <p style={{ margin: 7 }} id="error-message">
           {message}
         </p>
-
         <div id="right-box">
           <div className="formgroup">
             <label htmlFor="email">Email<span className="required">*</span>: </label>

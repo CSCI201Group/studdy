@@ -44,7 +44,7 @@ public class StudentController {
 		return studentService.get(id);
 	}
 
-	@GetMapping("/student/{email}")
+	@GetMapping("/student/email/{email}")
 	public Student getEmail(@PathVariable String email) {
 		return studentService.getEmail(email);
 	}
@@ -75,7 +75,7 @@ public class StudentController {
 	public Student GetPotentialMatch(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
 
-		return s.getMatch().getPotentialNext(s, (ArrayList) get());
+		return s.getMatch().getPotentialNext(s, (ArrayList<Student>) get());
 	}
 
 	// Get a compatible student for student s (takes in a string booleans representing classes)
@@ -90,7 +90,10 @@ public class StudentController {
 	@GetMapping("/student/mutual/{e}")
 	public ArrayList<Student> getMutuals(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
-
+		if(s.getMatch() == null) {
+			ArrayList<Student> none = new ArrayList<Student>(0);
+			return none;
+		}
 		return s.getMatch().getMutuals(s);
 	}
 
