@@ -29,6 +29,7 @@ public class StudentDAOImp implements StudentDAO {
 
 	public Student getEmail(String email) {
 		Session currSession = entityManager.unwrap(Session.class);
+		@SuppressWarnings("unchecked")
 		List<Student> students = currSession
 				.createQuery("SELECT s FROM Student s WHERE email = :email")
 				.setParameter("email", email).getResultList();
@@ -47,5 +48,21 @@ public class StudentDAOImp implements StudentDAO {
 		Student student = currSession.get(Student.class, id);
 		currSession.delete(student);
 	}
-
+	
+	@Override
+	public Boolean validateEmail(String email, String password) {
+		Session currSession = entityManager.unwrap(Session.class);
+		@SuppressWarnings("unchecked")
+		Query<Student> q = currSession.createQuery("SELECT s.email, s.password FROM Student s WHERE s.email = :email AND s.password = :password");
+		q.setCacheable(true);
+		q.setParameter("email", email);
+		q.setParameter("password", password);
+		List<Student> list = q.getResultList();
+		if(list.size() == 0) {
+		return false;
+		}
+		else {
+		return true;
+		}
+	}
 }

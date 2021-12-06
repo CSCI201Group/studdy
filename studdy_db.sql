@@ -10,6 +10,7 @@ CREATE TABLE students(
     locations VARCHAR(255),
     subjects VARCHAR(45),
     schedule VARCHAR(255),
+    image longblob,
     PRIMARY KEY (id)
 );
 
@@ -24,9 +25,9 @@ CREATE TABLE swipes(
 
 -- INSERT PLACEHOLDER VALUES FOR TESTING
 INSERT INTO students(email, password, first_name, last_name, classes, locations, subjects, schedule)
-VALUES('sthuynh@usc.edu', 1234, 'Serena', 'Huynh', 'CSCI201', 'Leavey', 'Exams', 'Mon9-12,Tues13-14,Wed13-15,Thur12-16,Fri9-13');
+VALUES('sthuynh@usc.edu', 1234, 'Serena', 'Huynh', '000000', '00000', '00000', 'Mon9-12,Tues13-14,Wed13-15,Thur12-16,Fri9-13');
 
 INSERT INTO students(email, password, first_name, last_name, classes, locations, subjects, schedule)
-VALUES('test@usc.edu', 123, 'Test', 'One', 'CSCI270', 'Doheny', 'Homework', 'Mon9-10,Tues11-12,Wed10-11,Thurs0-0,Fri8-12');
+VALUES('test@usc.edu', 123, 'Test', 'One', '000000', '00000', '00000', 'Mon9-10,Tues11-12,Wed10-11,Thurs0-0,Fri8-12');
 
 SELECT * FROM students;
