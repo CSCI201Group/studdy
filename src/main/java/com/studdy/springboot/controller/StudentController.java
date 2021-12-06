@@ -60,7 +60,7 @@ public class StudentController {
 	}
 
 	@GetMapping("/student/add/{e1}/{e2}")
-	public void add(@PathVariable String e1, @PathVariable String e2 ) {
+	public void add(@PathVariable String e1, @PathVariable String e2) {
 		Student s1 = studentService.getEmail(e1);
 		Student s2 = studentService.getEmail(e2);
 
@@ -81,5 +81,12 @@ public class StudentController {
 		return s.getMatch().getMutuals(s);
 	}
 
+	@GetMapping("/student/match/{e}")
+	public boolean isMatched(@PathVariable String e1, @PathVariable String e2) {
+		Student s1 = studentService.getEmail(e1);
+		Student s2 = studentService.getEmail(e2);
+
+		return s1.getMatch().isMatched(s2);
+	}
 
 }
