@@ -82,7 +82,10 @@ public class StudentController {
 	@GetMapping("/student/mutual/{e}")
 	public ArrayList<Student> getMutuals(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
-
+		if(s.getMatch() == null) {
+			ArrayList<Student> none = new ArrayList<Student>(0);
+			return none;
+		}
 		return s.getMatch().getMutuals(s);
 	}
 

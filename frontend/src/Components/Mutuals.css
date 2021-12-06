@@ -1,0 +1,31 @@
+#noMatches{
+    width: 90%;
+    margin: auto;
+    height: 200px;
+    border-radius: 15px;
+    padding: 100px 20px 0px 20px;
+    text-align: center;
+    background-color: #a1c181;
+    font-family: "PT Mono", monospace;
+}
+#matchesContainer{
+    width: 90%;
+    margin: auto;
+    background-color: #a1c181;
+    border-radius: 15px;
+
+}
+.row{
+    display: flex;
+    border-radius: 15px;
+}
+.row:hover{
+    background-color: #7c9661;
+    transition: 0.2s;
+}
+.row-item{
+    width: 18%;
+    margin: 2%;
+    display: flex;
+    overflow-wrap: break-word;
+}
