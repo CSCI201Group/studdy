@@ -41,4 +41,10 @@ public class StudentServiceImp implements StudentService {
 	public void delete(int id) {
 		studentDao.delete(id);
 	}
+	
+	@Transactional
+	@Override
+	public Boolean validate(String email, String password) {
+		return studentDao.validateEmail(email, password);
+	}
 }

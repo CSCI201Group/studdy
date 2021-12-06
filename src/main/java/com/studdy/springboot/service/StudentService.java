@@ -9,4 +9,5 @@ public interface StudentService {
 	Student getEmail(String email);
 	void save(Student student);
 	void delete(int id);
+	Boolean validate(String email, String password);
 }

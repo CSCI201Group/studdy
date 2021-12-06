@@ -3,6 +3,9 @@ package com.studdy.springboot.modal;
 //import java.sql.Date;
 
 import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "students")

@@ -26,6 +26,11 @@ public class StudentController {
 		return studentService.get();
 	}
 	
+	@GetMapping("/student/{email}/{password}")
+	public Boolean validate( @PathVariable String email, @PathVariable String password) {
+		return studentService.validate(email, password);
+	}
+	
 	@PostMapping("/student")
 	public Student save(@RequestBody Student student) {
 		studentService.save(student);

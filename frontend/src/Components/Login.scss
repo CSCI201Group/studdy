@@ -1,7 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=PT+Mono&display=swap");
+
+html{
+    background-color: #233d4d;
+  }
 body {
   background-color: #233d4d;
+  width: 100%;
+  height: 100%;
 }
 #Studdy {
   color: #fe7f2d;
@@ -51,4 +57,15 @@ body {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+}
+
+#login{
+    margin: 0 auto;
+    display: block;
+}
+
+#error-message{
+  color: red;
+  text-align: center;
+
 }

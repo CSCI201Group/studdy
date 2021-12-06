@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Profile from "./Profile";
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,6 +9,7 @@ import {
 } from "react-router-dom";
 import Dropdown from 'react-dropdown';
 import "./Register.css";
+
 const Register = () => {
   /** All of the setters */
   const [email, setEmail] = React.useState("");
@@ -57,6 +59,7 @@ const Register = () => {
   const handlePasswordChange = (event) => setPassword(event.target.value);
   const handleFirstNameChange = (event) => setFirstName(event.target.value);
   const handleLastNameChange = (event) => setLastName(event.target.value);
+
   const handleClassChange = (event) => {
     var currClass = event.target.value;
     for(var i = 0; i < allClasses.length; i++){
@@ -252,16 +255,10 @@ const Register = () => {
     <div>
       <h1 id="title">Studdy</h1>
       <div id="top-box">
-        {/* <div id="left-box">
-          <input type="file" accept="image/*" name="image" className="file" />
-          <br />
-          <label for="file" className="file">
-            Upload Image for Profile. You can change this later in settings.
-          </label>
-        </div> */}
         <p style={{ margin: 7 }} id="error-message">
           {message}
         </p>
+
         <div id="right-box">
           <div className="formgroup">
             <label htmlFor="email">Email<span className="required">*</span>: </label>

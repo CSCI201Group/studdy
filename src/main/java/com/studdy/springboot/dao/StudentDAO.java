@@ -10,4 +10,5 @@ public interface StudentDAO {
 	Student getEmail(String email);
 	void save(Student student);
 	void delete(int id);
+	Boolean validateEmail(String email, String password);
 }
