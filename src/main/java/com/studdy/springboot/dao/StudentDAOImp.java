@@ -30,7 +30,7 @@ public class StudentDAOImp implements StudentDAO {
 	public Student getEmail(String email) {
 		Session currSession = entityManager.unwrap(Session.class);
 		List<Student> students = currSession
-				.createQuery("SELECT s FROM students WHERE email = :email")
+				.createQuery("SELECT s FROM Student s WHERE email = :email")
 				.setParameter("email", email).getResultList();
 		return students.get(0);
 	}

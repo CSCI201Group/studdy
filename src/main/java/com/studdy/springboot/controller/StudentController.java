@@ -54,24 +54,24 @@ public class StudentController {
 		return student;
 	}
 
-	@GetMapping("/student/{id}")
-	public void add(@PathVariable int id1, @PathVariable int id2 ) {
-		Student s1 = studentService.get(id1);
-		Student s2 = studentService.get(id2);
+	@GetMapping("/student/add/{e1}/{e2}")
+	public void add(@PathVariable String e1, @PathVariable String e2 ) {
+		Student s1 = studentService.getEmail(e1);
+		Student s2 = studentService.getEmail(e2);
 
 		s1.getMatch().add(s2);
 	}
 
-	@GetMapping("/student/{id}")
-	public Student GetPotentialMatch(@PathVariable int id) {
-		Student s = studentService.get(id);
+	@GetMapping("/student/potential/{e}")
+	public Student GetPotentialMatch(@PathVariable String e) {
+		Student s = studentService.getEmail(e);
 
 		return s.getMatch().getPotentialNext(s, (ArrayList) get());
 	}
 
-	@GetMapping("/student/{id}")
-	public ArrayList<Student> getMutuals(@PathVariable int id) {
-		Student s = studentService.get(id);
+	@GetMapping("/student/mutual/{e}")
+	public ArrayList<Student> getMutuals(@PathVariable String e) {
+		Student s = studentService.getEmail(e);
 
 		return s.getMatch().getMutuals(s);
 	}
