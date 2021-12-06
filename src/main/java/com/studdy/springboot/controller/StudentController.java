@@ -77,6 +77,10 @@ public class StudentController {
 
 		return s.getMatch().getPotentialNext(s, (ArrayList<Student>) get());
 	}
+	
+	
+	
+	
 
 	// Get list of mutuals for student s
 	@GetMapping("/student/mutual/{e}")

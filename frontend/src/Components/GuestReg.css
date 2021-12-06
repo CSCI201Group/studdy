@@ -1,0 +1,209 @@
+@import url("https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=PT+Mono&display=swap");
+body {
+  background-color: #233d4d;
+}
+#login-link{
+  text-align: center;
+}
+#title {
+  color: #fe7f2d;
+  text-align: center;
+  font-size: 180px;
+  font-family: "Gochi Hand", cursive;
+  margin-top: 0%;
+  margin-left: 5%;
+}
+.required{
+  font-size: 15px;
+  vertical-align: top;
+  color: rgb(196, 30, 30);
+}
+#required-note{
+  font-size: 13px;
+  vertical-align: top;
+}
+.formgroup {
+  font-size: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "PT Mono", monospace;
+  color: #233d4d;
+  padding-top: 15px;
+}
+#right-box {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 40px;
+}
+#top-box {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -160px;
+  background-color: #a1c181;
+  padding: 30px;
+  border-radius: 40px;
+  width: 90%;
+  max-width: 1000px;
+}
+.clearFloat {
+  clear: both;
+}
+input {
+  background-color: white;
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 15px;
+  border-bottom: 2px #233d4d;
+  text-indent: 20px;
+  font-family: "PT Mono", monospace;
+  transition: all 250ms ease-in-out;
+}
+.questions-box{
+  margin-top: 15px;
+}
+.questions{
+  color: white;
+  font-family: "PT Mono", monospace;
+  padding: 15px 0px 8px 20px;
+  margin: 0;
+}
+.inputQ {
+  color: white;
+  font-family: "PT Mono", monospace;
+  overflow-wrap: break-word;
+  float: left;
+  text-align: center;
+  margin: auto;
+  width: 100%;
+}
+.eachQ {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  margin-bottom: 15px;
+}
+.choice{
+  width: 20%;
+  float: left;
+}
+.class-choice{
+  width: 16.66%;
+  float: left;
+}
+#submit-button{
+  width: 40%;
+  margin: 20px 30% 20px 30%;
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  background-color: #a1c181;
+  font-size: 25px;
+  font-family: "PT Mono", monospace;
+  transition: 0.5s;
+}
+#submit-button:hover{
+  background-color: #6d8356;
+  color: white;
+  transition: 0.5s;
+}
+#error-message{
+  color: red;
+}
+#password-req{
+  font-size: 11px;
+  padding-left: 25px;
+  margin: 0;
+}
+#schedule{
+  width: 300px;
+  margin: auto;
+  color: white;
+  display: flex;
+}
+.day{
+  margin-bottom: 4px;
+}
+.dropdowns{
+  height: 250px;
+}
+.eachDay{
+  display: flex;
+  position: relative;
+}
+.from{
+  display: flex;
+  margin-left: 20px;
+  margin-bottom: 4.2px;
+}
+.to{
+  display: flex;
+  padding-left: 100px;
+  margin-bottom: 4.2px;
+}
+.fromDropdown{
+  background-color: #7c9661;
+  color: black;
+  border: 1px solid black;
+  width: 70px;
+  text-align: center;
+  margin-left: 50px;
+  position: absolute;
+  transition: 0.3s;
+}
+.toDropdown{
+  background-color: #7c9661;
+  color: black;
+  border: 1px solid black;
+  width: 70px;
+  text-align: center;
+  margin-left: 30px;
+  position: absolute;
+  transition: 0.3s;
+}
+.fromDropdown:hover, .toDropdown:hover{
+  background-color: #a1c181;
+  transition: 0.3s;
+}
+.is-selected{
+  background-color: #7c9661;
+  color: white;
+  width: 70px;
+  text-align: center;
+  transition: 0.3s;
+}
+.Dropdown-option:hover{
+  background-color: #7c9661;
+  color: white;
+  transition: 0.2s;
+}
+.Dropdown-menu{
+  height: 150px;
+  overflow-y: scroll;
+}
+::-webkit-scrollbar{
+  display: none;
+}
+#monday{
+  z-index: 7;
+}
+#tuesday{
+  z-index: 6;
+}
+#wednesday{
+  z-index: 5;
+}
+#thursday{
+  z-index: 4;
+}
+#friday{
+  z-index: 3;
+}
+#saturday{
+  z-index: 2;
+}
+#sunday{
+  z-index: 1;
+}
