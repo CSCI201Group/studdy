@@ -41,10 +41,10 @@ public class Student {
 	private static final int[] classList = {102, 103, 104, 170, 201, 270};
 
 	@Transient
-	private static final int[] locationList = {102, 103, 104, 170, 201, 270};
+	private static final String[] locationList = {"Leavey Library", "Doheny Library", "Study rooms", "Outdoors", "Other"};
 
 	@Transient
-	private static final int[] subjectList = {102, 103, 104, 170, 201, 270};
+	private static final String[] subjectList = {"Exams", "Homework", "Labs", "Projects", "Other"};
 
 	@Transient
 	private Match match;
