@@ -78,6 +78,14 @@ public class StudentController {
 		return s.getMatch().getPotentialNext(s, (ArrayList) get());
 	}
 
+	// Get a compatible student for student s (takes in a string booleans representing classes)
+	@GetMapping("/student/potentialList/{e}")
+	public ArrayList<Student> GetPotentialList(@PathVariable String e) {
+		Student s = new Student(e);
+
+		return s.getMatch().getPotentialList(s, (ArrayList) get());
+	}
+
 	// Get list of mutuals for student s
 	@GetMapping("/student/mutual/{e}")
 	public ArrayList<Student> getMutuals(@PathVariable String e) {
@@ -118,5 +126,29 @@ public class StudentController {
 		}
 
 		s.getMatch().setMatchList(sList);
+	}
+
+	// Get list of classes for student s
+	@GetMapping("/student/classes/{e}")
+	public ArrayList<String> getClassesList(String e) {
+		Student s = studentService.getEmail(e);
+
+		return s.getClassesList();
+	}
+
+	// Get list of locations for subject s
+	@GetMapping("/student/locations/{e}")
+	public ArrayList<String> getLocationsList(String e) {
+		Student s = studentService.getEmail(e);
+
+		return s.getLocationsList();
+	}
+
+	// Get list of subjects for student s
+	@GetMapping("/student/subjects/{e}")
+	public ArrayList<String> getSubjectsList(String e) {
+		Student s = studentService.getEmail(e);
+
+		return s.getSubjectsList();
 	}
 }
