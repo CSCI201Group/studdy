@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Profile from "./Profile";
+import Login from "./Login";
 import {
   BrowserRouter as Router,
   Routes,
@@ -255,10 +255,12 @@ const Register = () => {
     <div>
       <h1 id="title">Studdy</h1>
       <div id="top-box">
+        <div id="login-link">
+          <a href="/">Already have an account? Login!</a>
+        </div>
         <p style={{ margin: 7 }} id="error-message">
           {message}
         </p>
-
         <div id="right-box">
           <div className="formgroup">
             <label htmlFor="email">Email<span className="required">*</span>: </label>

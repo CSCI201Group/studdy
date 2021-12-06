@@ -3,19 +3,16 @@
 body {
   background-color: #233d4d;
 }
+#login-link{
+  text-align: center;
+}
 #title {
   color: #fe7f2d;
-  text-align: left;
+  text-align: center;
   font-size: 180px;
   font-family: "Gochi Hand", cursive;
   margin-top: 0%;
   margin-left: 5%;
-}
-#left-box {
-  float: left;
-  width: 400px;
-  background-color: white;
-  font-family: "PT Mono", monospace;
 }
 .required{
   font-size: 15px;

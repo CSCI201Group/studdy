@@ -50,7 +50,7 @@ const Login = () => {
     let body = await response.json();
     //console.log("body = " +await body + typeof body);
    
-    if(body == true){
+    if(body === true){
       setValid(true);
       //console.log("GOTTTTINNN")
     }
@@ -63,7 +63,7 @@ const Login = () => {
   React.useEffect(() => { //only happens once valid changes, since it takes a bit for valid to change
     //console.log("useeffect" + valid)
 
-    if(valid == true){ //if false then set correct error message
+    if(valid === true){ //if false then set correct error message
       navigate("/Register")
       setMessage("");
     }
@@ -82,20 +82,16 @@ const Login = () => {
     setPassword("");
     //setMessage("");
 
-    if(valid == false){
+    if(valid === false){
       invalid = true;
       setMessage("Invalid Username or Password"); //display in return
     }
-    //console.log(valid ? "true" : "false");
-
-
   };
 
   if (firstLoad) {
     sampleFunc();
     setLoad(false);
   }
-
 
   return (
     <div>
@@ -130,9 +126,7 @@ const Login = () => {
           <button type="button" onClick={handleSubmit} id="login" className="submitButton">
             Login
           </button>
-          <br />          
           {<p style={{ margin: 7 }} id="error-message"> {message}</p>}
-          <br />          
 
         </form>
         <br />

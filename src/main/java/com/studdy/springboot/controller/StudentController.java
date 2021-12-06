@@ -44,7 +44,7 @@ public class StudentController {
 		return studentService.get(id);
 	}
 
-	@GetMapping("/student/{email}")
+	@GetMapping("/student/email/{email}")
 	public Student getEmail(@PathVariable String email) {
 		return studentService.getEmail(email);
 	}
@@ -75,7 +75,7 @@ public class StudentController {
 	public Student GetPotentialMatch(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
 
-		return s.getMatch().getPotentialNext(s, (ArrayList) get());
+		return s.getMatch().getPotentialNext(s, (ArrayList<Student>) get());
 	}
 
 	// Get list of mutuals for student s
