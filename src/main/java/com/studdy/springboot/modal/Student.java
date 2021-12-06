@@ -44,7 +44,7 @@ public class Student {
 	private String matchList;
 
 	@Transient
-	private static final int[] classList = {102, 103, 104, 170, 201, 270};
+	private static final String[] classList = {"102", "103", "104", "170", "201", "270"};
 
 	@Transient
 	private static final String[] locationList = {"Leavey Library", "Doheny Library", "Study rooms", "Outdoors", "Other"};
@@ -59,7 +59,7 @@ public class Student {
 
 	}
 
-	public Student(int id, String email, String password, String firstName, String lastName, String classes, String locations, String subjects, String schedule, Match match) {
+	public Student(int id, String email, String password, String firstName, String lastName, String classes, String locations, String subjects, String schedule) {
 		this.id = id;
 		this.email = email;
 		this.password = password;
@@ -69,9 +69,21 @@ public class Student {
 		this.locations = locations;
 		this.subjects = subjects;
 		this.schedule = schedule;
-		this.match = match;
+		this.match = new Match();
 	}
 
+	public Student(String classes) {
+		this.id = -1;
+		this.email = "guest@usc.edu";
+		this.password = "0";
+		this.firstName = "Guest";
+		this.lastName = "User";
+		this.classes = classes;
+		this.locations = "00000";
+		this.subjects = "00000";
+		this.schedule = "00000";
+		this.match = new Match();
+	}
 
 	@Override
 	public String toString() {
@@ -87,6 +99,42 @@ public class Student {
 				", schedule='" + schedule + '\'' +
 				", match=" + match +
 				'}';
+	}
+
+	public ArrayList<String> getClassesList() {
+		ArrayList tempClasses = new ArrayList<>();
+
+		for (int i = 0; i < classList.length; i++) {
+			if (classes.charAt(i) == '1') {
+				tempClasses.add(classList[i]);
+			}
+		}
+
+		return tempClasses;
+	}
+
+	public ArrayList<String> getLocationsList() {
+		ArrayList tempLocations = new ArrayList<>();
+
+		for (int i = 0; i < locationList.length; i++) {
+			if (locations.charAt(i) == '1') {
+				tempLocations.add(locationList[i]);
+			}
+		}
+
+		return tempLocations;
+	}
+
+	public ArrayList<String> getSubjectsList() {
+		ArrayList tempSubjects = new ArrayList<>();
+
+		for (int i = 0; i < subjectList.length; i++) {
+			if (subjects.charAt(i) == '1') {
+				tempSubjects.add(subjectList[i]);
+			}
+		}
+
+		return tempSubjects;
 	}
 
 	public void saveMatches() {

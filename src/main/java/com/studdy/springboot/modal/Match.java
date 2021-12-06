@@ -72,6 +72,19 @@ public class Match {
         return temp;
     }
 
+    // Get list of potential matches for guests
+    public ArrayList<Student> getPotentialList(Student student, ArrayList<Student> studentList) {
+        ArrayList<Student> tempList = new ArrayList<>();
+        
+        for (Student s : studentList) {
+            if (compatibility(student, s)) {
+                tempList.add(s);
+            }
+        }
+
+        return tempList;
+    }
+
     // Return list of mutuals
     public ArrayList<Student> getMutuals(Student s1) {
         ArrayList<Student> mutuals = new ArrayList<>();
