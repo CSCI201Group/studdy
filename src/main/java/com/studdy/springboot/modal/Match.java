@@ -7,12 +7,10 @@ import com.studdy.springboot.service.StudentServiceImp;
 import java.util.ArrayList;
 
 public class Match {
-    private StudentDAOImp DAO;
     private ArrayList<Student> matchList;
     private int currId;
 
-    public Match(StudentDAOImp DAO) {
-        this.DAO = DAO;
+    public Match() {
         this.matchList = new ArrayList<>();
         this.currId = 0;
     }

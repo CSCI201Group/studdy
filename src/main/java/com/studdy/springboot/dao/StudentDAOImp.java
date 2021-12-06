@@ -27,10 +27,12 @@ public class StudentDAOImp implements StudentDAO {
 		return student;
 	}
 
-	public Student get(String email) {
+	public Student getEmail(String email) {
 		Session currSession = entityManager.unwrap(Session.class);
-		Student student = currSession.get(Student.class, email);
-		return student;
+		List<Student> students = currSession
+				.createQuery("SELECT s FROM students WHERE email = :email")
+				.setParameter("email", email).getResultList();
+		return students.get(0);
 	}
 	
 	@Override

@@ -1,5 +1,6 @@
 package com.studdy.springboot.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,7 +36,12 @@ public class StudentController {
 	public Student get(@PathVariable int id) {
 		return studentService.get(id);
 	}
- 
+
+	@GetMapping("/student/{email}")
+	public Student getEmail(@PathVariable String email) {
+		return studentService.getEmail(email);
+	}
+
 	@DeleteMapping("/student/{id}")
  	public String delete(@PathVariable int id) {
 		studentService.delete(id);
@@ -47,4 +53,28 @@ public class StudentController {
 		studentService.save(student);
 		return student;
 	}
+
+	@GetMapping("/student/{id}")
+	public void add(@PathVariable int id1, @PathVariable int id2 ) {
+		Student s1 = studentService.get(id1);
+		Student s2 = studentService.get(id2);
+
+		s1.getMatch().add(s2);
+	}
+
+	@GetMapping("/student/{id}")
+	public Student GetPotentialMatch(@PathVariable int id) {
+		Student s = studentService.get(id);
+
+		return s.getMatch().getPotentialNext(s, (ArrayList) get());
+	}
+
+	@GetMapping("/student/{id}")
+	public ArrayList<Student> getMutuals(@PathVariable int id) {
+		Student s = studentService.get(id);
+
+		return s.getMatch().getMutuals(s);
+	}
+
+
 }

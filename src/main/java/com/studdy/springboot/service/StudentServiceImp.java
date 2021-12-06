@@ -24,6 +24,11 @@ public class StudentServiceImp implements StudentService {
 	public Student get(int id) {
 		return studentDao.get(id);
 	}
+
+	@Transactional
+	public Student getEmail(String email) {
+		return studentDao.getEmail(email);
+	}
 	
 	@Transactional
 	@Override
