@@ -80,7 +80,7 @@ public class StudentController {
 
 	// Get a compatible student for student s
 	@GetMapping("/student/potential/{e}")
-	public Student GetPotentialMatch(@PathVariable String e) {
+	public ArrayList<Student> GetPotentialMatch(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
 
 		return s.getMatch().getPotentialNext(s, (ArrayList<Student>) get());
@@ -91,9 +91,9 @@ public class StudentController {
 	
 
 	// Get a compatible student for student s (takes in a string booleans representing classes)
-	@GetMapping("/student/potentialList/{e}")
-	public ArrayList<Student> GetPotentialList(@PathVariable String e) {
-		Student s = new Student(e);
+	@GetMapping("/student/potentialList/{c}")
+	public ArrayList<Student> GetPotentialList(@PathVariable String c) {
+		Student s = new Student(c);
 
 		return s.getMatch().getPotentialList(s, (ArrayList) get());
 	}
