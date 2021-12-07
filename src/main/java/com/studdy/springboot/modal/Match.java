@@ -5,9 +5,11 @@ import com.studdy.springboot.dao.StudentDAOImp;
 import com.studdy.springboot.service.StudentServiceImp;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Match {
     private ArrayList<Student> matchList;
+    private ArrayList<Student> rejectList;
     private int currId;
 
     public Match() {
@@ -27,7 +29,7 @@ public class Match {
     }
 
     // Return list of matches
-    public ArrayList<Student> get() {
+    public List<Student> getMatchList() {
         return matchList;
     }
 
@@ -35,11 +37,30 @@ public class Match {
         this.matchList = matchList;
     }
 
-    // Get string of matches' email
+    public ArrayList<Student> getRejectList() {
+        return rejectList;
+    }
+
+    public void setRejectList(ArrayList<Student> rejectList) {
+        this.rejectList = rejectList;
+    }
+
+    // Get string of matched student' email
     public String getMatchString() {
         String emails = "";
 
         for (Student s : matchList) {
+            emails = emails + s.getEmail() + ",";
+        }
+
+        return emails;
+    }
+
+    // Get string of rejected students' email
+    public String getRejectString() {
+        String emails = "";
+
+        for (Student s : rejectList) {
             emails = emails + s.getEmail() + ",";
         }
 
@@ -56,8 +77,13 @@ public class Match {
         matchList.remove(s);
     }
 
+    // Add given student to list of rejected
+    public void addReject(Student s) {
+        rejectList.add(s);
+    }
+
     // Get potential match
-    public ArrayList<Student> getPotentialNext(Student student, ArrayList<Student> studentList) {
+    public List<Student> getPotentialNext(Student student, ArrayList<Student> studentList) {
         /*
         Student temp;
 
@@ -75,16 +101,9 @@ public class Match {
 
         ArrayList<Student> tempList = new ArrayList<>();
 
-        int tempCurrId = currId;
-
-        if (currId == studentList.size()) {
-            currId = 0;
-        }
-
-        for (int i = tempCurrId; i < studentList.size(); i++) {
-            currId++;
-            if (compatibility(student, studentList.get(i))) {
-                tempList.add(studentList.get(i));
+        for (Student s : studentList) {
+            if (compatibility(student, s) && !matchList.contains(s) && !rejectList.contains(s)) {
+                tempList.add(s);
             }
         }
 
@@ -92,7 +111,7 @@ public class Match {
     }
 
     // Get list of potential matches for guests
-    public ArrayList<Student> getPotentialList(Student student, ArrayList<Student> studentList) {
+    public List<Student> getPotentialList(Student student, ArrayList<Student> studentList) {
         ArrayList<Student> tempList = new ArrayList<>();
         
         for (Student s : studentList) {
@@ -105,7 +124,7 @@ public class Match {
     }
 
     // Return list of mutuals
-    public ArrayList<Student> getMutuals(Student s1) {
+    public List<Student> getMutuals(Student s1) {
         ArrayList<Student> mutuals = new ArrayList<>();
 
         for (Student tempS : matchList) {

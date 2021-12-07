@@ -6,6 +6,7 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "students")
@@ -42,6 +43,9 @@ public class Student {
 
 	@Column
 	private String matchList;
+
+	@Column
+	private String rejectList;
 
 	@Transient
 	private static final String[] classList = {"102", "103", "104", "170", "201", "270"};
@@ -101,7 +105,7 @@ public class Student {
 				'}';
 	}
 
-	public ArrayList<String> getClassesList() {
+	public List<String> getClassesList() {
 		ArrayList tempClasses = new ArrayList<>();
 
 		for (int i = 0; i < classList.length; i++) {
@@ -113,7 +117,7 @@ public class Student {
 		return tempClasses;
 	}
 
-	public ArrayList<String> getLocationsList() {
+	public List<String> getLocationsList() {
 		ArrayList tempLocations = new ArrayList<>();
 
 		for (int i = 0; i < locationList.length; i++) {
@@ -125,7 +129,7 @@ public class Student {
 		return tempLocations;
 	}
 
-	public ArrayList<String> getSubjectsList() {
+	public List<String> getSubjectsList() {
 		ArrayList tempSubjects = new ArrayList<>();
 
 		for (int i = 0; i < subjectList.length; i++) {
@@ -141,12 +145,24 @@ public class Student {
 		matchList = match.getMatchString();
 	}
 
+	public void saveRejected() {
+		rejectList = match.getRejectString();
+	}
+
 	public String getMatchList() {
 		return matchList;
 	}
 
 	public void setMatchList(String matchList) {
 		this.matchList = matchList;
+	}
+
+	public String getRejectList() {
+		return rejectList;
+	}
+
+	public void setRejectList(String rejectList) {
+		this.rejectList = rejectList;
 	}
 
 	public int getId() {

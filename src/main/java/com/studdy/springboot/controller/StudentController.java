@@ -72,19 +72,15 @@ public class StudentController {
 
 	// Get a compatible student for student s
 	@GetMapping("/student/potential/{e}")
-	public ArrayList<Student> GetPotentialMatch(@PathVariable String e) {
+	public List<Student> GetPotentialMatch(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
 
 		return s.getMatch().getPotentialNext(s, (ArrayList<Student>) get());
 	}
-	
-	
-	
-	
 
 	// Get a compatible student for student s (takes in a string booleans representing classes)
 	@GetMapping("/student/potentialList/{e}")
-	public ArrayList<Student> GetPotentialList(@PathVariable String e) {
+	public List<Student> GetPotentialList(@PathVariable String e) {
 		Student s = new Student(e);
 
 		return s.getMatch().getPotentialList(s, (ArrayList) get());
@@ -92,7 +88,7 @@ public class StudentController {
 
 	// Get list of mutuals for student s
 	@GetMapping("/student/mutual/{e}")
-	public ArrayList<Student> getMutuals(@PathVariable String e) {
+	public List<Student> getMutuals(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
 		if(s.getMatch() == null) {
 			ArrayList<Student> none = new ArrayList<Student>(0);
@@ -117,6 +113,13 @@ public class StudentController {
 		s.saveMatches();
 	}
 
+	// Save s's rejected into database
+	@GetMapping("/student/saveReject/{e}")
+	public void saveRejected(@PathVariable String e) {
+		Student s = studentService.getEmail(e);
+		s.saveRejected();
+	}
+
 	// Load s's matches into match class
 	@GetMapping("/student/load/{e}")
 	public void loadMatches(@PathVariable String e) {
@@ -135,9 +138,27 @@ public class StudentController {
 		s.getMatch().setMatchList(sList);
 	}
 
+	// Load s's rejected into match class
+	@GetMapping("/student/loadRejected/{e}")
+	public void loadRejected(@PathVariable String e) {
+		Student s = studentService.getEmail(e);
+		String rejectedString = s.getRejectList();
+
+		Scanner sc = new Scanner(rejectedString);
+		sc.useDelimiter(",");
+
+		ArrayList<Student> sList = new ArrayList<>();
+
+		while (sc.hasNext()) {
+			sList.add(studentService.getEmail(sc.next()));
+		}
+
+		s.getMatch().setRejectList(sList);
+	}
+
 	// Get list of classes for student s
 	@GetMapping("/student/classes/{e}")
-	public ArrayList<String> getClassesList(String e) {
+	public List<String> getClassesList(String e) {
 		Student s = studentService.getEmail(e);
 
 		return s.getClassesList();
@@ -145,7 +166,7 @@ public class StudentController {
 
 	// Get list of locations for subject s
 	@GetMapping("/student/locations/{e}")
-	public ArrayList<String> getLocationsList(String e) {
+	public List<String> getLocationsList(String e) {
 		Student s = studentService.getEmail(e);
 
 		return s.getLocationsList();
@@ -153,9 +174,18 @@ public class StudentController {
 
 	// Get list of subjects for student s
 	@GetMapping("/student/subjects/{e}")
-	public ArrayList<String> getSubjectsList(String e) {
+	public List<String> getSubjectsList(String e) {
 		Student s = studentService.getEmail(e);
 
 		return s.getSubjectsList();
+	}
+
+	// Add a rejected student
+	@GetMapping("/student/reject/{e1}/{e2}")
+	public void addReject(String e1, String e2) {
+		Student s1 = studentService.getEmail(e1);
+		Student s2 = studentService.getEmail(e2);
+
+		s1.getMatch().addReject(s2);
 	}
 }
