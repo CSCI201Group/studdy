@@ -57,7 +57,8 @@ public class Match {
     }
 
     // Get potential match
-    public Student getPotentialNext(Student student, ArrayList<Student> studentList) {
+    public ArrayList<Student> getPotentialNext(Student student, ArrayList<Student> studentList) {
+        /*
         Student temp;
 
         while (true) {
@@ -70,6 +71,24 @@ public class Match {
         }
 
         return temp;
+        */
+
+        ArrayList<Student> tempList = new ArrayList<>();
+
+        int tempCurrId = currId;
+
+        if (currId == studentList.size()) {
+            currId = 0;
+        }
+
+        for (int i = tempCurrId; i < studentList.size(); i++) {
+            currId++;
+            if (compatibility(student, studentList.get(i))) {
+                tempList.add(studentList.get(i));
+            }
+        }
+
+        return tempList;
     }
 
     // Get list of potential matches for guests

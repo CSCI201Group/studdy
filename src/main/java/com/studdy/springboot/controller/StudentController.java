@@ -72,7 +72,7 @@ public class StudentController {
 
 	// Get a compatible student for student s
 	@GetMapping("/student/potential/{e}")
-	public Student GetPotentialMatch(@PathVariable String e) {
+	public ArrayList<Student> GetPotentialMatch(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
 
 		return s.getMatch().getPotentialNext(s, (ArrayList<Student>) get());
