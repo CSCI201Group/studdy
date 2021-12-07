@@ -70,7 +70,7 @@ const GuestSwipe = (props) => {
   let isLoading = true;
 
   async function sampleFunc() {
-    let response = await fetch(`/student/potentialList/${classes.classes}`);    
+    let response = await fetch(`api/student/potentialList/${classes.classes}`);    
     let body = await response.json();
     upDateData(body);
   }
