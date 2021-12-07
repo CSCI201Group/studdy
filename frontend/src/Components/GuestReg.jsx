@@ -55,7 +55,9 @@ const GuestReg = () => {
             }
         }
 
-        navigate("/GuestSwipe", {classes})        
+        console.log("from reg " + classes)
+
+        navigate("/GuestSwipe", {state : {classes : classes}})        
         //reset inputs
     };
 

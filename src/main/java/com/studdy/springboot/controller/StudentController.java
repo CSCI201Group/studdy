@@ -48,6 +48,14 @@ public class StudentController {
 	public Student getEmail(@PathVariable String email) {
 		return studentService.getEmail(email);
 	}
+	
+	@GetMapping("/student/validate-email/{email}")
+	public Boolean validateEmail(@PathVariable String email) {
+		if(studentService.getEmail(email) == null) {
+			return false;
+		}
+		return true;
+	}
 
 	@DeleteMapping("/student/{id}")
  	public String delete(@PathVariable int id) {
@@ -79,9 +87,10 @@ public class StudentController {
 	}
 
 	// Get a compatible student for student s (takes in a string booleans representing classes)
-	@GetMapping("/student/potentialList/{e}")
-	public List<Student> GetPotentialList(@PathVariable String e) {
-		Student s = new Student(e);
+
+	@GetMapping("/student/potentialList/{c}")
+	public List<Student> GetPotentialList(@PathVariable String c) {
+		Student s = new Student(c);
 
 		return s.getMatch().getPotentialList(s, (ArrayList) get());
 	}
