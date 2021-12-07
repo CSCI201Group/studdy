@@ -28,6 +28,8 @@ class App extends Component {
           <Route exact path="/view" element={<Table/>}></Route>
           <Route exact path="/GuestReg" element={<GuestReg/>}></Route>
           <Route exact path="/GuestSwipe" element={<GuestSwipe/>}></Route>
+          <Route exact path="/Swipe" element={<Swipe/>}></Route>
+
         </Routes>
       </Router>
       
