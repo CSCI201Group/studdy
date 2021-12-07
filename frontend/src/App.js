@@ -6,6 +6,7 @@ import Login from "./Components/Login";
 import Mutuals from "./Components/Mutuals";
 import GuestReg from "./Components/GuestReg";
 import GuestSwipe from "./Components/GuestSwipe";
+import Swipe from "./Components/Swipe";
 
 import './App.scss';
 
