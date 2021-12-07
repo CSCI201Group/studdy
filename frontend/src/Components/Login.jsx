@@ -29,13 +29,7 @@ const Login = () => {
     let response = await fetch(`/api/student/${username}/${password}`);
     let body = await response.json();
 
-<<<<<<< HEAD
-    console.log(body);
-   
-    if(body === true){
-=======
     if (body === true) {
->>>>>>> e4754b2a90cebc165704e83d39a957a85aac9bff
       setValid(true);
       //console.log("GOTTTTINNN")
     } else {
