@@ -33,6 +33,9 @@ public class StudentDAOImp implements StudentDAO {
 		List<Student> students = currSession
 				.createQuery("SELECT s FROM Student s WHERE email = :email")
 				.setParameter("email", email).getResultList();
+		if(students.size() == 0) {
+			return null;
+		}
 		return students.get(0);
 	}
 	

@@ -54,10 +54,17 @@ const Register = () => {
   ];
 
   const [message, setMessage] = React.useState("");
+  const [valid, setValid] = React.useState(false);
   const navigate = useNavigate() //used to go to swipes page
 
   // ----- HANDLERS -----
   const handleEmailChange = (event) => setEmail(event.target.value);
+  React.useEffect(() => {
+    if(email !== ""){
+      validate();
+    }
+  }, [email])
+
   const handlePasswordChange = (event) => setPassword(event.target.value);
   const handleFirstNameChange = (event) => setFirstName(event.target.value);
   const handleLastNameChange = (event) => setLastName(event.target.value);
@@ -156,10 +163,20 @@ const Register = () => {
       body: JSON.stringify(toInput), // body data type must match "Content-Type" header
     });
     let body = await response.json();
-    // TODO: if successfully logged in, redirect to swipes
-    // if(body){
-    //   navigate("/Swipes");
-    // }
+    if(body){
+      navigate("/");
+    }
+  }
+
+  async function validate(){
+    let response = await fetch(`/api/student/validate-email/${email}`);
+    let body = await response.json();
+    if(!body){
+      setValid(true);
+    }
+    else{
+      setValid(false);
+    }
   }
 
   //makes toInput object and sends to logFunc
@@ -176,6 +193,7 @@ const Register = () => {
         classes += "0";
       }
     }
+
     // Locations
     var locations = "";
     for(var j = 0; j < allLocations.length; j++){
@@ -234,6 +252,11 @@ const Register = () => {
       setMessage("Must be a USC email.");
       window.scrollTo(0,0);
     }
+    //if email is taken
+    else if(valid === false){
+      setMessage("That email already has an account.");
+      window.scrollTo(0,0);
+    }
     // if password isn't 8 chars
     else if(password.length < 8){
       setMessage("Password must be longer than 8 characters.");
@@ -246,6 +269,7 @@ const Register = () => {
     }
     else{
       const toInput = { email, password, firstName, lastName, classes, locations, subjects, schedule };
+
       logFunc(toInput);
       //reset inputs
       setEmail("");

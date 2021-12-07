@@ -48,6 +48,14 @@ public class StudentController {
 	public Student getEmail(@PathVariable String email) {
 		return studentService.getEmail(email);
 	}
+	
+	@GetMapping("/student/validate-email/{email}")
+	public Boolean validateEmail(@PathVariable String email) {
+		if(studentService.getEmail(email) == null) {
+			return false;
+		}
+		return true;
+	}
 
 	@DeleteMapping("/student/{id}")
  	public String delete(@PathVariable int id) {

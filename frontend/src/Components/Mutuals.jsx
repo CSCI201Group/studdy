@@ -20,7 +20,7 @@ const Mutuals = () => {
   function parseClass(classes){
     var result = "";
     for(var i = 0; i < classes.length; i++){
-      if(classes[i] == "1"){
+      if(classes[i] === "1"){
         result += allClasses[i] + ", ";
       }
     }
@@ -89,12 +89,12 @@ const Mutuals = () => {
       <div id="matchesContainer">
         {mutualList?.map(row=> (
           <div className="row" key={row.name}> 
-            <div className="row-item name" key={row.firstName}>{row.firstName} {row.lastName}</div>
-            <div className="row-item email" key={row.email}>{row.email}</div>
-            <div className="row-item classes" key={row.classes}>{parseClass(row.classes)}</div>
-            <div className="row-item locations" key={row.locations}>{parseLocation(row.locations)}</div>
-            <div className="row-item subjects" key={row.subjects}>{parseSubject(row.subjects)}</div>
-            <div className="row-item schedule" key={row.schedule}>{parseSchedule(row.schedule)}</div>
+            <div className="row-item name">{row.firstName} {row.lastName}</div>
+            <div className="row-item email">{row.email}</div>
+            <div className="row-item classes">{parseClass(row.classes)}</div>
+            <div className="row-item locations">{parseLocation(row.locations)}</div>
+            <div className="row-item subjects">{parseSubject(row.subjects)}</div>
+            <div className="row-item schedule">{parseSchedule(row.schedule)}</div>
           </div>
         ))}
       </div>
