@@ -57,7 +57,6 @@ const Mutuals = () => {
         result += schedule[i];
       }
     }
-    console.log(result);
     return result;
   }
 

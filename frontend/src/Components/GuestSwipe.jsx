@@ -2,17 +2,6 @@ import React, { Component } from "react";
 import { useState, useEffect } from 'react'
 
 import { makeStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-// import Avatar from "@material-ui/core/Avatar";
-// import GroupIcon from "@material-ui/icons/Group";
-import Typography from "@material-ui/core/Typography";
-import CircularProgress from "@material-ui/core/CircularProgress";
 
 import {
   BrowserRouter as Router,
@@ -63,11 +52,56 @@ const GuestSwipe = (props) => {
     console.log(state)
     console.log(classes.classes)
 
-    const classe = useStyles();
-
   const [data, upDateData] = React.useState([]);
   const [firstLoad, setLoad] = React.useState(true);
   let isLoading = true;
+  const allClasses = ["CSCI102", "CSCI103", "CSCI104", "CSCI170", "CSCI201", "CSCI270"];
+  const allLocations = ["Leavey Library", "Doheny Library", "Study rooms", "Outdoors", "Other"];
+  const allSubjects = ["Exams", "Homework", "Labs", "Projects", "Other"];
+
+  // Class parser
+  function parseClass(classes){
+    var result = "";
+    for(var i = 0; i < classes.length; i++){
+      if(classes[i] === "1"){
+        result += allClasses[i] + ", ";
+      }
+    }
+    return result.substr(0, result.length-2);
+  }
+  // Location parser
+  function parseLocation(locations){
+    var result = "";
+    for(var i = 0; i < locations.length; i++){
+      if(locations[i] === "1"){
+        result += allLocations[i] + ", ";
+      }
+    }
+    return result.substr(0, result.length-2);
+  }
+  // Subject parser
+  function parseSubject(subjects){
+    var result = "";
+    for(var i = 0; i < subjects.length; i++){
+      if(subjects[i] === "1"){
+        result += allSubjects[i] + ", ";
+      }
+    }
+    return result.substr(0, result.length-2);
+  }
+  // Schedule parser
+  function parseSchedule(schedule){
+    var result = "";
+    for(var i = 0; i < schedule.length; i++){
+      if(schedule[i] === ","){
+        result += "\n";
+      }
+      else{
+        result += schedule[i];
+      }
+    }
+    return result;
+  }
 
   async function sampleFunc() {
     let response = await fetch(`api/student/potentialList/${classes.classes}`);    
@@ -80,52 +114,33 @@ const GuestSwipe = (props) => {
     setLoad(false);
   }
 
-  if (data.length > 0) isLoading = false;
+  if(data.length <= 0){
+    return(
+      <div id="noMatches">
+        <p>No matches here :( <br/>
+        Sign up to find more study buddies!</p>
+      </div>
+    );
+  }
 
-  return (
-    <div className={classe.paper}>
-      <Typography component="h1" variant="h5">
-        Students Database
-      </Typography>
-
-      {isLoading ? (
-        <CircularProgress />
-      ) : (
-        <TableContainer
-          style={{ width: "80%", margin: "0 10px" }}
-          component={Paper}
-        >
-          <Table className={classe.table} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-              <TableCell align="center">Email</TableCell>
-                <TableCell align="center">First Name</TableCell>
-                <TableCell align="center">Last Name</TableCell>
-                <TableCell align="center">Classes</TableCell>
-                <TableCell align="center">Locations</TableCell>
-                <TableCell align="center">Subjects</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data?.map(row => (
-                <TableRow key={row.name}>
-                  <TableCell align="center">{row.email}</TableCell>
-                  <TableCell align="center">{row.firstName}</TableCell>
-                  <TableCell align="center">{row.lastName}</TableCell>
-                  <TableCell align="center">{row.classes}</TableCell>
-                  <TableCell align="center">{row.locations}</TableCell>
-                  <TableCell align="center">{row.subjects}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      )}
-    </div>
-  );
-
-
-
+  else{
+    return (
+      <div id="matchesContainer">
+        {data?.map(row=> (
+          <div className="row" key={row.name}> 
+            <div className="row-item name">{row.firstName} {row.lastName}</div>
+            <div className="row-item email">{row.email}</div>
+            <div className="row-item classes">{parseClass(row.classes)}</div>
+            <div className="row-item locations">{parseLocation(row.locations)}</div>
+            <div className="row-item subjects">{parseSubject(row.subjects)}</div>
+            <div className="row-item schedule">{parseSchedule(row.schedule)}</div>
+            <div className="row-item yes">Yes</div>
+            <div className="row-item no">No</div>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
 };
 

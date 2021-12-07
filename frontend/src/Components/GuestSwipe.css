@@ -1,0 +1,40 @@
+#noMatches{
+    width: 90%;
+    margin: auto;
+    height: 200px;
+    border-radius: 15px;
+    padding: 100px 20px 0px 20px;
+    text-align: center;
+    background-color: #a1c181;
+    font-family: "PT Mono", monospace;
+}
+#matchesContainer{
+    width: 90%;
+    margin: auto;
+    background-color: #a1c181;
+    border-radius: 15px;
+    font-family: "PT Mono", monospace;
+}
+.row{
+    display: flex;
+    border-radius: 15px;
+}
+.row:hover{
+    background-color: #7c9661;
+    transition: 0.2s;
+}
+.row-item{
+    width: 12.28%;
+    margin: 2%;
+    display: flex;
+    overflow-x: scroll;
+}
+.yes, .no{
+    height: 20px;
+    width: 40px;
+    padding-left: 4px;
+}
+.yes:hover, .no:hover{
+    background-color: white;
+    transition: 0.3s;
+}
