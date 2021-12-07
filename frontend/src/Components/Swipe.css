@@ -1,0 +1,17 @@
+#mutualButton{
+    margin: 10px;
+    border-radius: 5px;
+    border: 0;
+    padding: 6px;
+    font-family: "PT Mono", monospace;
+    transition: 0.3s;
+}
+#mutualButton:hover{
+    background-color: #fe7f2d;
+    color: white;
+    transition: 0.3s;
+}
+h1{
+    text-align: center;
+    color: #fe7f2d;
+}

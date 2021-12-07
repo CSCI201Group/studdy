@@ -28,7 +28,6 @@ const Login = () => {
   async function sampleFunc() {
     let response = await fetch(`/api/student/${username}/${password}`);
     let body = await response.json();
-
     if (body === true) {
       setValid(true);
       //console.log("GOTTTTINNN")

@@ -118,7 +118,7 @@ const GuestSwipe = (props) => {
     return(
       <div id="noMatches">
         <p>No matches here :( <br/>
-        Sign up to find more study buddies!</p>
+        Creating an account can help you find more study buddies!</p>
       </div>
     );
   }

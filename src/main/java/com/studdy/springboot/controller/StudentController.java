@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.studdy.springboot.modal.Match;
 import com.studdy.springboot.modal.Student;
 import com.studdy.springboot.service.StudentService;
 
@@ -74,7 +75,12 @@ public class StudentController {
 	public void add(@PathVariable String e1, @PathVariable String e2) {
 		Student s1 = studentService.getEmail(e1);
 		Student s2 = studentService.getEmail(e2);
-
+		if(s1.getMatch() == null) {
+			s1.setMatch(new Match());
+		}
+		if(s2.getMatch() == null) {
+			s2.setMatch(new Match());
+		}
 		s1.getMatch().add(s2);
 	}
 
@@ -82,18 +88,16 @@ public class StudentController {
 	@GetMapping("/student/potential/{e}")
 	public List<Student> GetPotentialMatch(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
-
+		if(s.getMatch() == null) {
+			s.setMatch(new Match());			
+		}
 		return s.getMatch().getPotentialNext(s, (ArrayList<Student>) get());
 	}
 
-	// Get a compatible student for student s (takes in a string booleans representing classes)
-
+//	USE THIS FOR GUEST
 	@GetMapping("/student/potentialList/{c}")
 	public List<Student> GetPotentialList(@PathVariable String c) {
 		Student s = new Student(c);
-		System.out.println("got in");
-		System.out.println(s.getMatch().getPotentialList(s, (ArrayList<Student>) get()));
-
 		return s.getMatch().getPotentialList(s, (ArrayList<Student>) get());
 	}
 
@@ -101,6 +105,9 @@ public class StudentController {
 	@GetMapping("/student/mutual/{e}")
 	public List<Student> getMutuals(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
+		if(s.getMatch() == null) {
+			s.setMatch(new Match());
+		}
 		if(s.getMatch() == null) {
 			ArrayList<Student> none = new ArrayList<Student>(0);
 			return none;
@@ -113,7 +120,12 @@ public class StudentController {
 	public boolean isMatched(@PathVariable String e1, @PathVariable String e2) {
 		Student s1 = studentService.getEmail(e1);
 		Student s2 = studentService.getEmail(e2);
-
+		if(s1.getMatch() == null) {
+			s1.setMatch(new Match());
+		}
+		if(s2.getMatch() == null) {
+			s2.setMatch(new Match());
+		}
 		return s1.getMatch().isMatched(s2);
 	}
 
@@ -169,7 +181,7 @@ public class StudentController {
 
 	// Get list of classes for student s
 	@GetMapping("/student/classes/{e}")
-	public List<String> getClassesList(String e) {
+	public List<String> getClassesList(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
 
 		return s.getClassesList();
@@ -177,7 +189,7 @@ public class StudentController {
 
 	// Get list of locations for subject s
 	@GetMapping("/student/locations/{e}")
-	public List<String> getLocationsList(String e) {
+	public List<String> getLocationsList(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
 
 		return s.getLocationsList();
@@ -185,7 +197,7 @@ public class StudentController {
 
 	// Get list of subjects for student s
 	@GetMapping("/student/subjects/{e}")
-	public List<String> getSubjectsList(String e) {
+	public List<String> getSubjectsList(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
 
 		return s.getSubjectsList();
@@ -193,9 +205,15 @@ public class StudentController {
 
 	// Add a rejected student
 	@GetMapping("/student/reject/{e1}/{e2}")
-	public void addReject(String e1, String e2) {
+	public void addReject(@PathVariable String e1, @PathVariable String e2) {
 		Student s1 = studentService.getEmail(e1);
 		Student s2 = studentService.getEmail(e2);
+		if(s1.getMatch() == null){
+			s1.setMatch(new Match());
+		}
+		if(s2.getMatch() == null) {
+			s2.setMatch(new Match());
+		}
 
 		s1.getMatch().addReject(s2);
 	}
