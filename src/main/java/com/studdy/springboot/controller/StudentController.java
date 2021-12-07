@@ -91,8 +91,10 @@ public class StudentController {
 	@GetMapping("/student/potentialList/{c}")
 	public List<Student> GetPotentialList(@PathVariable String c) {
 		Student s = new Student(c);
+		System.out.println("got in");
+		System.out.println(s.getMatch().getPotentialList(s, (ArrayList<Student>) get()));
 
-		return s.getMatch().getPotentialList(s, (ArrayList) get());
+		return s.getMatch().getPotentialList(s, (ArrayList<Student>) get());
 	}
 
 	// Get list of mutuals for student s
