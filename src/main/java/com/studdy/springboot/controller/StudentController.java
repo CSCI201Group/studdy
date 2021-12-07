@@ -77,6 +77,10 @@ public class StudentController {
 
 		return s.getMatch().getPotentialNext(s, (ArrayList<Student>) get());
 	}
+	
+	
+	
+	
 
 	// Get a compatible student for student s (takes in a string booleans representing classes)
 	@GetMapping("/student/potentialList/{e}")

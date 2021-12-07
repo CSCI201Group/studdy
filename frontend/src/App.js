@@ -4,6 +4,9 @@ import Table from "./Components/Table";
 import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Mutuals from "./Components/Mutuals";
+import GuestReg from "./Components/GuestReg";
+import GuestSwipe from "./Components/GuestSwipe";
+
 import './App.scss';
 
 class App extends Component {
@@ -23,6 +26,8 @@ class App extends Component {
           <Route exact path="/Register" element={<Register/>}></Route>
           <Route exact path="/mutuals" element={<Mutuals/>}></Route>
           <Route exact path="/view" element={<Table/>}></Route>
+          <Route exact path="/GuestReg" element={<GuestReg/>}></Route>
+          <Route exact path="/GuestSwipe" element={<GuestSwipe/>}></Route>
         </Routes>
       </Router>
       
