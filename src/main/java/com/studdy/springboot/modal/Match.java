@@ -10,11 +10,9 @@ import java.util.List;
 public class Match {
     private ArrayList<Student> matchList;
     private ArrayList<Student> rejectList;
-    private int currId;
 
     public Match() {
         this.matchList = new ArrayList<>();
-        this.currId = 0;
     }
 
     // Calculate compatibility
