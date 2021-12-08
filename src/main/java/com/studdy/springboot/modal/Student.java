@@ -61,6 +61,8 @@ public class Student {
 
 	public Student() {
 		this.match = new Match();
+		this.matchList = "";
+		this.rejectList  = "";
 	}
 
 	public Student(int id, String email, String password, String firstName, String lastName, String classes, String locations, String subjects, String schedule) {
@@ -73,6 +75,8 @@ public class Student {
 		this.locations = locations;
 		this.subjects = subjects;
 		this.schedule = schedule;
+		this.matchList = "";
+		this.rejectList  = "";
 		this.match = new Match();
 	}
 
@@ -86,6 +90,8 @@ public class Student {
 		this.locations = "00000";
 		this.subjects = "00000";
 		this.schedule = "00000";
+		this.matchList = "";
+		this.rejectList  = "";
 		this.match = new Match();
 	}
 
