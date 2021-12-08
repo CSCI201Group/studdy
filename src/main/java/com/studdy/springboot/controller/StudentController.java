@@ -83,7 +83,7 @@ public class StudentController {
 		}
 		s1.getMatch().add(s2);
 
-		saveMatches(e1);
+		s1.saveMatches();
 		save(s1);
 	}
 
@@ -100,7 +100,7 @@ public class StudentController {
 		}
 		s1.getMatch().addReject(s2);
 
-		saveRejected(e1);
+		s1.saveRejected();
 		save(s1);
 	}
 
