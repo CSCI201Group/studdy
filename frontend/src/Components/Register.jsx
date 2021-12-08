@@ -262,6 +262,11 @@ const Register = () => {
       setMessage("Password must be longer than 8 characters.");
       window.scrollTo(0,0);
     }
+    // Password can't have "#"
+    else if(password.indexOf("#") != -1){
+      setMessage('"#" is not a valid special character. Use another one.');
+      window.scrollTo(0,0);
+    }
     // password doesn't meet security reqs
     else if(!pattern.test(password)){
       setMessage("Password does not fulfill requirements.");

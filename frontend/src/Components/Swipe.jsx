@@ -1,60 +1,27 @@
-import React, { Component } from "react";
-import { useState, useEffect } from 'react'
-
-import { makeStyles } from "@material-ui/core/styles";
-
+import { RemoveFromQueueTwoTone } from "@material-ui/icons";
+import React, { Component, useMemo, useRef } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Outlet,
   Link,
-  useNavigate,
   useLocation,
+  useNavigate,
 } from "react-router-dom";
-import "./GuestSwipe.css";
+import "./Swipe.css";
 
+const Swipe = (props) => {
+  //function that gets list of potential matches
+  const [email, setEmail] = React.useState("");
+  const [data, updateData] = React.useState([]);
+  const { state } = useLocation();
+  console.log(state);
+  const tempString = state.username;
+  console.log(email);
+  const navigate = useNavigate();
 
-const useStyles = makeStyles(theme => ({
-  table: {
-    minWidth: 600
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
-  },
-  paper: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    margin: `10px`,
-    height: "100%",
-    width: "99%",
-    marginTop: theme.spacing(7)
-  },
-  link: {
-    color: "rgba(0,0,0,0.65)",
-    textDecoration: "none",
-    marginLeft: "10%",
-    alignSelf: "flex-start",
-    "&:hover": {
-      color: "rgba(0,0,0,1)"
-    }
-  }
-}));
-
-const GuestSwipe = (props) => {
-    //grabbing the string of classes
-    const {state} = useLocation()
-    const classes = state
-
-    console.log(state)
-    console.log(classes.classes)
-
-  const [data, upDateData] = React.useState([]);
   const [firstLoad, setLoad] = React.useState(true);
-  let isLoading = true;
   const allClasses = ["CSCI102", "CSCI103", "CSCI104", "CSCI170", "CSCI201", "CSCI270"];
   const allLocations = ["Leavey Library", "Doheny Library", "Study rooms", "Outdoors", "Other"];
   const allSubjects = ["Exams", "Homework", "Labs", "Projects", "Other"];
@@ -103,29 +70,44 @@ const GuestSwipe = (props) => {
     return result;
   }
 
-  async function sampleFunc() {
-    let response = await fetch(`api/student/potentialList/${classes.classes}`);    
-    let body = await response.json();
-    upDateData(body);
+  if (firstLoad) {
+    setLoad(false);
+    setEmail(tempString); //sets it once loaded
+    sampleFunc();
   }
 
-  if (firstLoad) {
+  React.useEffect(() => {
     sampleFunc();
-    setLoad(false);
+  }, [email])
+  
+  async function sampleFunc() {
+    let response = await fetch(`api/student/potential/${email}`);
+    let body;
+    if(response.ok){
+      body = await response.json();
+    }
+    if(body !== undefined){
+      updateData(body);
+    }
   }
 
   if(data.length <= 0){
     return(
       <div id="noMatches">
+        <button id="mutualButton" onClick={() => {navigate("/Mutuals", { state: { email: email } });}}>Mutual matches</button>
+        <h1>Potential Study Buddies</h1>
+        <hr/>
         <p>No matches here :( <br/>
-        Creating an account can help you find more study buddies!</p>
+        Come back when more students have joined!</p>
       </div>
     );
   }
-
   else{
     return (
       <div id="matchesContainer">
+        <button id="mutualButton" onClick={() => {navigate("/Mutuals", { state: { email: email } });}}>Mutual matches</button>
+        <h1>Potential Study Buddies</h1>
+        <hr/>
         {data?.map(row=> (
           <div className="row" key={row.name}> 
             <div className="row-item name">{row.firstName} {row.lastName}</div>
@@ -134,8 +116,15 @@ const GuestSwipe = (props) => {
             <div className="row-item locations">{parseLocation(row.locations)}</div>
             <div className="row-item subjects">{parseSubject(row.subjects)}</div>
             <div className="row-item schedule">{parseSchedule(row.schedule)}</div>
-            <div className="row-item yes">Yes</div>
-            <div className="row-item no">No</div>
+            <button
+              className="row-item yes"
+              onClick= { () => {
+                fetch(`api/student/add/${email}/${row.email}`);
+              }
+              }>
+              Yes
+            </button>
+            <button className="row-item no" onClick={() => {fetch(`api/student/reject/${email}/${row.email}`)}}>No</button>
           </div>
         ))}
       </div>
@@ -144,4 +133,4 @@ const GuestSwipe = (props) => {
 
 };
 
-export default GuestSwipe;
+export default Swipe;

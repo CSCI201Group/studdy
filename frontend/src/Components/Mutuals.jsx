@@ -5,16 +5,22 @@ import {
   Route,
   Outlet,
   Link,
+  useLocation,
+  useNavigate,
 } from "react-router-dom";
 import "./Mutuals.css";
 
 const Mutuals = () => {
+  const [username, setEmail] = React.useState("");
+  const { state } = useLocation();
+  const tempString = state.email;
   const [mutualList, updateMutualList] = React.useState([]);
   const [firstLoad, setLoad] = React.useState(true);
   const allClasses = ["CSCI102", "CSCI103", "CSCI104", "CSCI170", "CSCI201", "CSCI270"];
   const allLocations = ["Leavey Library", "Doheny Library", "Study rooms", "Outdoors", "Other"];
   const allSubjects = ["Exams", "Homework", "Labs", "Projects", "Other"];
   const [message, setMessage] = React.useState("");
+  const navigate = useNavigate();
 
   // Class parser
   function parseClass(classes){
@@ -57,20 +63,29 @@ const Mutuals = () => {
         result += schedule[i];
       }
     }
-    console.log(result);
     return result;
   }
 
+  React.useEffect(() => {
+    load();
+  }, [username])
+
   // Request from DB
   async function load() {
-    var email = "sthuynh@usc.edu";
-    // let response = await fetch(`/api/student/mutual/${email}`);
-    let response = await fetch(`/api/student/`);
-    let body = await response.json();
-    updateMutualList(body);
+    let response = await fetch(`/api/student/mutual/${username}`);
+    console.log(response);
+    let body;
+    if(response.ok){
+      body = await response.json();
+    }
+    console.log(body);
+    if(body !== undefined){
+      updateMutualList(body);
+    }
   }
 
   if(firstLoad){
+    setEmail(tempString);
     load();
     setLoad(false);
   }
@@ -78,6 +93,9 @@ const Mutuals = () => {
   if(mutualList.length <= 0){
     return(
       <div id="noMatches">
+        <button id="mutualButton" onClick={() => {navigate("/Swipe", { state: { username: username } });}}>Find more buddies</button>
+        <h1>Mutual Study Buddies</h1>
+        <hr/>
         <p>No matches here :( <br/>
         Head over to the swipes page to meet new study buddies!</p>
       </div>
@@ -87,6 +105,9 @@ const Mutuals = () => {
   else{
     return (
       <div id="matchesContainer">
+        <button id="mutualButton" onClick={() => {navigate("/Swipe", { state: { username: username } });}}>Find more buddies</button>
+        <h1>Mutual Study Buddies</h1>
+        <hr/>
         {mutualList?.map(row=> (
           <div className="row" key={row.name}> 
             <div className="row-item name">{row.firstName} {row.lastName}</div>

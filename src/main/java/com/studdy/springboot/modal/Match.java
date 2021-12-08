@@ -13,6 +13,7 @@ public class Match {
 
     public Match() {
         this.matchList = new ArrayList<>();
+        this.rejectList = new ArrayList<>();
     }
 
     // Calculate compatibility
@@ -101,7 +102,10 @@ public class Match {
 
         for (Student s : studentList) {
             if (compatibility(student, s) && !matchList.contains(s) && !rejectList.contains(s)) {
-                tempList.add(s);
+//            	added if statement so it doesn't include the user itself
+            	if(s != student) {
+            		tempList.add(s);
+            	}
             }
         }
 

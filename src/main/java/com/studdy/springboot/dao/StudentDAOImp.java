@@ -62,10 +62,10 @@ public class StudentDAOImp implements StudentDAO {
 		q.setParameter("password", password);
 		List<Student> list = q.getResultList();
 		if(list.size() == 0) {
-		return false;
+			return false;
 		}
 		else {
-		return true;
+			return true;
 		}
 	}
 }

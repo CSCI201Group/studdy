@@ -60,7 +60,7 @@ public class Student {
 	private Match match;
 
 	public Student() {
-
+		this.match = new Match();
 	}
 
 	public Student(int id, String email, String password, String firstName, String lastName, String classes, String locations, String subjects, String schedule) {
