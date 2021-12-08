@@ -83,7 +83,7 @@ public class StudentController {
 		}
 		s1.getMatch().add(s2);
 
-		saveMatches(e2);
+		saveMatches(e1);
 		save(s1);
 	}
 
@@ -92,10 +92,15 @@ public class StudentController {
 	public void addRejected(String e1, String e2) {
 		Student s1 = studentService.getEmail(e1);
 		Student s2 = studentService.getEmail(e2);
-
+		if(s1.getMatch() == null) {
+			s1.setMatch(new Match());
+		}
+		if(s2.getMatch() == null) {
+			s2.setMatch(new Match());
+		}
 		s1.getMatch().addReject(s2);
 
-		saveRejected(e2);
+		saveRejected(e1);
 		save(s1);
 	}
 
