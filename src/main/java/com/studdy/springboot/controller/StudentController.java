@@ -76,6 +76,35 @@ public class StudentController {
 		Student s2 = studentService.getEmail(e2);
 
 		s1.getMatch().add(s2);
+
+		saveMatches(e2);
+		save(s1);
+	}
+
+	// Add a rejected student
+	@GetMapping("/student/reject/{e1}/{e2}")
+	public void addRejected(String e1, String e2) {
+		Student s1 = studentService.getEmail(e1);
+		Student s2 = studentService.getEmail(e2);
+
+		s1.getMatch().addReject(s2);
+
+		saveRejected(e2);
+		save(s1);
+	}
+
+	// Save s's matches into database
+	@GetMapping("/student/save/{e}")
+	public void saveMatches(@PathVariable String e) {
+		Student s = studentService.getEmail(e);
+		s.saveMatches();
+	}
+
+	// Save s's rejected into database
+	@GetMapping("/student/saveReject/{e}")
+	public void saveRejected(@PathVariable String e) {
+		Student s = studentService.getEmail(e);
+		s.saveRejected();
 	}
 
 	// Get a compatible student for student s
@@ -113,20 +142,6 @@ public class StudentController {
 		Student s2 = studentService.getEmail(e2);
 
 		return s1.getMatch().isMatched(s2);
-	}
-
-	// Save s's matches into database
-	@GetMapping("/student/save/{e}")
-	public void saveMatches(@PathVariable String e) {
-		Student s = studentService.getEmail(e);
-		s.saveMatches();
-	}
-
-	// Save s's rejected into database
-	@GetMapping("/student/saveReject/{e}")
-	public void saveRejected(@PathVariable String e) {
-		Student s = studentService.getEmail(e);
-		s.saveRejected();
 	}
 
 	// Load s's matches into match class
@@ -187,14 +202,5 @@ public class StudentController {
 		Student s = studentService.getEmail(e);
 
 		return s.getSubjectsList();
-	}
-
-	// Add a rejected student
-	@GetMapping("/student/reject/{e1}/{e2}")
-	public void addReject(String e1, String e2) {
-		Student s1 = studentService.getEmail(e1);
-		Student s2 = studentService.getEmail(e2);
-
-		s1.getMatch().addReject(s2);
 	}
 }
