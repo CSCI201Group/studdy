@@ -152,8 +152,12 @@ public class StudentController {
 		}*/
 		System.out.println("getMutuals: " + s.getMatchString());
 		Student temp = studentService.getEmail(s.getMatchString());
-		ArrayList<Student> answer = new ArrayList<>();
-		answer.add(temp);
+		ArrayList<Student> answer = new ArrayList<>(0);
+		if(temp.getMatchString().equals(s.getEmail())) {
+			answer.add(temp);
+		}
+		
+		
 		return answer;
 		//return s.getMatch().getMutuals(s);
 	}
