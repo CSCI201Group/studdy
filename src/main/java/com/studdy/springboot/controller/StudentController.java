@@ -139,13 +139,14 @@ public class StudentController {
 	@GetMapping("/student/mutual/{e}")
 	public List<Student> getMutuals(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
+		/*
 		if(s.getMatch() == null) {
 			s.setMatch(new Match());
 		}
 		if(s.getMatch() == null) {
 			ArrayList<Student> none = new ArrayList<Student>(0);
 			return none;
-		}
+		}*/
 		return s.getMatch().getMutuals(s);
 	}
 
@@ -154,6 +155,7 @@ public class StudentController {
 	public boolean isMatched(@PathVariable String e1, @PathVariable String e2) {
 		Student s1 = studentService.getEmail(e1);
 		Student s2 = studentService.getEmail(e2);
+		
 		if(s1.getMatch() == null) {
 			s1.setMatch(new Match());
 		}
