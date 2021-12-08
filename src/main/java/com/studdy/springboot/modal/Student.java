@@ -3,7 +3,6 @@ package com.studdy.springboot.modal;
 //import java.sql.Date;
 
 import javax.persistence.*;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +41,10 @@ public class Student {
 	private String schedule; // Numbers separated by , e.g. 8,10,9,13 is Mon 8-10, Tue 9-13
 
 	@Column
-	private String matchList;
+	private String matchString;
 
 	@Column
-	private String rejectList;
+	private String rejectString;
 
 	@Transient
 	private static final String[] classList = {"102", "103", "104", "170", "201", "270"};
@@ -61,8 +60,8 @@ public class Student {
 
 	public Student() {
 		this.match = new Match();
-		this.matchList = "";
-		this.rejectList  = "";
+		this.matchString = "";
+		this.rejectString = "";
 	}
 
 	public Student(int id, String email, String password, String firstName, String lastName, String classes, String locations, String subjects, String schedule) {
@@ -75,8 +74,8 @@ public class Student {
 		this.locations = locations;
 		this.subjects = subjects;
 		this.schedule = schedule;
-		this.matchList = "";
-		this.rejectList  = "";
+		this.matchString = "";
+		this.rejectString = "";
 		this.match = new Match();
 	}
 
@@ -90,8 +89,8 @@ public class Student {
 		this.locations = "00000";
 		this.subjects = "00000";
 		this.schedule = "00000";
-		this.matchList = "";
-		this.rejectList  = "";
+		this.matchString = "";
+		this.rejectString = "";
 		this.match = new Match();
 	}
 
@@ -112,7 +111,7 @@ public class Student {
 	}
 
 	public List<String> getClassesList() {
-		ArrayList tempClasses = new ArrayList<>();
+		ArrayList<String> tempClasses = new ArrayList<>();
 
 		for (int i = 0; i < classList.length; i++) {
 			if (classes.charAt(i) == '1') {
@@ -124,7 +123,7 @@ public class Student {
 	}
 
 	public List<String> getLocationsList() {
-		ArrayList tempLocations = new ArrayList<>();
+		ArrayList<String> tempLocations = new ArrayList<>();
 
 		for (int i = 0; i < locationList.length; i++) {
 			if (locations.charAt(i) == '1') {
@@ -136,7 +135,7 @@ public class Student {
 	}
 
 	public List<String> getSubjectsList() {
-		ArrayList tempSubjects = new ArrayList<>();
+		ArrayList<String> tempSubjects = new ArrayList<>();
 
 		for (int i = 0; i < subjectList.length; i++) {
 			if (subjects.charAt(i) == '1') {
@@ -148,27 +147,27 @@ public class Student {
 	}
 
 	public void saveMatches() {
-		matchList = match.getMatchString();
+		matchString = match.getMatchString();
 	}
 
 	public void saveRejected() {
-		rejectList = match.getRejectString();
+		rejectString = match.getRejectString();
 	}
 
-	public String getMatchList() {
-		return matchList;
+	public String getMatchString() {
+		return matchString;
 	}
 
-	public void setMatchList(String matchList) {
-		this.matchList = matchList;
+	public void setMatchString(String matchList) {
+		this.matchString = matchList;
 	}
 
-	public String getRejectList() {
-		return rejectList;
+	public String getRejectString() {
+		return rejectString;
 	}
 
-	public void setRejectList(String rejectList) {
-		this.rejectList = rejectList;
+	public void setRejectString(String rejectList) {
+		this.rejectString = rejectList;
 	}
 
 	public int getId() {

@@ -138,7 +138,7 @@ public class Match {
         return mutuals;
     }
 
-    // Check if this.student matched with student with given id
+    // Check if this student matched with student with given id
     public boolean isMatched(Student s) {
         if (matchList.contains(s)) {
             return true;

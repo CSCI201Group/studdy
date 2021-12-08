@@ -150,7 +150,7 @@ public class StudentController {
 	}
 
 	// Check if s2 matches with s1
-	@GetMapping("/student/match/{e}")
+	@GetMapping("/student/match/{e1}/{e2}")
 	public boolean isMatched(@PathVariable String e1, @PathVariable String e2) {
 		Student s1 = studentService.getEmail(e1);
 		Student s2 = studentService.getEmail(e2);
@@ -167,7 +167,7 @@ public class StudentController {
 	@GetMapping("/student/load/{e}")
 	public void loadMatches(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
-		String matchString = s.getMatchList();
+		String matchString = s.getMatchString();
 
 		Scanner sc = new Scanner(matchString);
 		sc.useDelimiter(",");
@@ -185,7 +185,7 @@ public class StudentController {
 	@GetMapping("/student/loadRejected/{e}")
 	public void loadRejected(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
-		String rejectedString = s.getRejectList();
+		String rejectedString = s.getRejectString();
 
 		Scanner sc = new Scanner(rejectedString);
 		sc.useDelimiter(",");
