@@ -49,7 +49,7 @@ public class Match {
         String emails = "";
 
         for (Student s : matchList) {
-            emails = emails + s.getEmail() + ",";
+            emails = emails + s.getEmail() + "";
         }
 
         return emails;
@@ -129,7 +129,9 @@ public class Match {
     // Return list of mutuals
     public List<Student> getMutuals(Student s1) {
         ArrayList<Student> mutuals = new ArrayList<>();
-
+        
+        System.out.println("getMutuals from match: " + matchList);
+        
         for (Student tempS : matchList) {
             if (tempS.getMatch().isMatched(s1)) {
                 mutuals.add(tempS);

@@ -148,6 +148,7 @@ public class Student {
 
 	public void saveMatches() {
 		matchString = match.getMatchString();
+		System.out.println("saveMatches in student: "+ matchString);
 	}
 
 	public void saveRejected() {

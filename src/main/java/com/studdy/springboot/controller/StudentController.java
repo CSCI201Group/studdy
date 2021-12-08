@@ -151,7 +151,11 @@ public class StudentController {
 			return none;
 		}*/
 		System.out.println("getMutuals: " + s.getMatchString());
-		return s.getMatch().getMutuals(s);
+		Student temp = studentService.getEmail(s.getMatchString());
+		ArrayList<Student> answer = new ArrayList<>();
+		answer.add(temp);
+		return answer;
+		//return s.getMatch().getMutuals(s);
 	}
 
 	// Check if s2 matches with s1
