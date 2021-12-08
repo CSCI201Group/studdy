@@ -15,3 +15,11 @@ h1{
     text-align: center;
     color: #fe7f2d;
 }
+.header{
+    display: flex;
+    border-radius: 15px;
+}
+.header-item{
+    margin: auto;
+    font-weight: 600;
+}

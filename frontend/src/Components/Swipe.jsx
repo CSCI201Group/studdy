@@ -108,14 +108,19 @@ const Swipe = (props) => {
         <button id="mutualButton" onClick={() => {navigate("/Mutuals", { state: { email: email } });}}>Mutual matches</button>
         <h1>Potential Study Buddies</h1>
         <hr/>
+        <div className="header">
+          <div className="header-item">Name</div>
+          <div className="header-item">Classes</div>
+          <div className="header-item">Locations</div>
+          <div className="header-item">Subjects</div>
+          <div className="header-item">Swipe?</div>
+        </div>
         {data?.map(row=> (
           <div className="row" key={row.name}> 
             <div className="row-item name">{row.firstName} {row.lastName}</div>
-            <div className="row-item email">{row.email}</div>
             <div className="row-item classes">{parseClass(row.classes)}</div>
             <div className="row-item locations">{parseLocation(row.locations)}</div>
             <div className="row-item subjects">{parseSubject(row.subjects)}</div>
-            <div className="row-item schedule">{parseSchedule(row.schedule)}</div>
             <button
               className="row-item yes"
               onClick= { () => {

@@ -108,6 +108,14 @@ const Mutuals = () => {
         <button id="mutualButton" onClick={() => {navigate("/Swipe", { state: { username: username } });}}>Find more buddies</button>
         <h1>Mutual Study Buddies</h1>
         <hr/>
+        <div className="header">
+          <div className="header-item">Name</div>
+          <div className="header-item">Email</div>
+          <div className="header-item">Classes</div>
+          <div className="header-item">Locations</div>
+          <div className="header-item">Subjects</div>
+          <div className="header-item">Schedule</div>
+        </div>
         {mutualList?.map(row=> (
           <div className="row" key={row.name}> 
             <div className="row-item name">{row.firstName} {row.lastName}</div>
