@@ -309,7 +309,7 @@ const Register = () => {
           </div>
           <div className="formgroup">
             <label htmlFor="password">Password<span className="required">*</span>: </label>
-            <p id="password-req"><strong>Must have at least one:</strong><br/>
+            <p id="password-req"><strong>Must have at least one on each:</strong><br/>
               Uppercase and lowercase letter (A, z) <br/>
               Numeric character (0-9) <br/>
               Special character (!, %, @, #, etc.)

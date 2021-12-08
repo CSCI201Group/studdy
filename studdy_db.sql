@@ -10,23 +10,16 @@ CREATE TABLE students(
     locations VARCHAR(255),
     subjects VARCHAR(45),
     schedule VARCHAR(255),
+    matchList VARCHAR(255),
+    rejectList VARCHAR(255),
     PRIMARY KEY (id)
 );
 
-CREATE TABLE swipes(
-	swipeID INT NOT NULL AUTO_INCREMENT,
-    student1_id INT,
-    student2_id INT,
-    PRIMARY KEY (swipeID),
-    FOREIGN KEY (student1_id) REFERENCES students(id),
-    FOREIGN KEY (student2_id) REFERENCES students(id)
-);
-
 -- INSERT PLACEHOLDER VALUES FOR TESTING
-INSERT INTO students(email, password, first_name, last_name, classes, locations, subjects, schedule)
-VALUES('sthuynh@usc.edu', 1234, 'Serena', 'Huynh', '100100', '01000', '11000', 'Mon9-12,Tues13-14,Wed13-15,Thur12-16,Fri9-13');
+INSERT INTO students(email, password, first_name, last_name, classes, locations, subjects, schedule, matchList, rejectList)
+VALUES('sthuynh@usc.edu', 1234, 'Serena', 'Huynh', '100100', '01000', '11000', 'Mon9-12,Tues13-14,Wed13-15,Thur12-16,Fri9-13', 'test@usc.edu', '');
 
-INSERT INTO students(email, password, first_name, last_name, classes, locations, subjects, schedule)
-VALUES('test@usc.edu', 123, 'Test', 'One', '000011', '00010', '01000', 'Mon9-10,Tues11-12,Wed10-11,Thurs0-0,Fri8-12');
+INSERT INTO students(email, password, first_name, last_name, classes, locations, subjects, schedule, matchList, rejectList)
+VALUES('test@usc.edu', 123, 'Test', 'One', '000000', '00000', '00000', 'Mon9-10,Tues11-12,Wed10-11,Thurs0-0,Fri8-12', 'sthuynh@usc.edu', '');
 
 SELECT * FROM students;
