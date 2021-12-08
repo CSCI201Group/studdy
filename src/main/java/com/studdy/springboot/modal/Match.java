@@ -69,7 +69,7 @@ public class Match {
     // Add given student to list of matches
     public void add(Student s) {
         matchList.add(s);
-        System.out.println(matchList);
+        System.out.println("add in match: " + matchList);
     }
 
     // Remove student with given id from list of matches

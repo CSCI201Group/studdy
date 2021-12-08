@@ -75,12 +75,13 @@ public class StudentController {
 	public void add(@PathVariable String e1, @PathVariable String e2) {
 		Student s1 = studentService.getEmail(e1);
 		Student s2 = studentService.getEmail(e2);
+		/*
 		if(s1.getMatch() == null) {
 			s1.setMatch(new Match());
 		}
 		if(s2.getMatch() == null) {
 			s2.setMatch(new Match());
-		}
+		}*/
 		s1.getMatch().add(s2);
 
 		saveMatches(e1);
@@ -92,12 +93,13 @@ public class StudentController {
 	public void addRejected(String e1, String e2) {
 		Student s1 = studentService.getEmail(e1);
 		Student s2 = studentService.getEmail(e2);
+		/*
 		if(s1.getMatch() == null) {
 			s1.setMatch(new Match());
 		}
 		if(s2.getMatch() == null) {
 			s2.setMatch(new Match());
-		}
+		}*/
 		s1.getMatch().addReject(s2);
 
 		saveRejected(e1);
@@ -122,9 +124,10 @@ public class StudentController {
 	@GetMapping("/student/potential/{e}")
 	public List<Student> GetPotentialMatch(@PathVariable String e) {
 		Student s = studentService.getEmail(e);
+		/*
 		if(s.getMatch() == null) {
 			s.setMatch(new Match());			
-		}
+		}*/
 		return s.getMatch().getPotentialNext(s, (ArrayList<Student>) get());
 	}
 
@@ -147,6 +150,7 @@ public class StudentController {
 			ArrayList<Student> none = new ArrayList<Student>(0);
 			return none;
 		}*/
+		System.out.println("getMutuals: " + s.getMatchString());
 		return s.getMatch().getMutuals(s);
 	}
 
@@ -155,13 +159,13 @@ public class StudentController {
 	public boolean isMatched(@PathVariable String e1, @PathVariable String e2) {
 		Student s1 = studentService.getEmail(e1);
 		Student s2 = studentService.getEmail(e2);
-		
+		/*
 		if(s1.getMatch() == null) {
 			s1.setMatch(new Match());
 		}
 		if(s2.getMatch() == null) {
 			s2.setMatch(new Match());
-		}
+		}*/
 		return s1.getMatch().isMatched(s2);
 	}
 
