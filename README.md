@@ -36,7 +36,7 @@
 9. Install dependencies and packages (in your terminal): <br>
 &emsp; a. Using the terminal, go into the folder "frontend" and install all dependencies: `yarn install` <br>
 &emsp; b. Install React Router package: `npm install react-router`<br>
-&emsp; c. Install React Material UI: `npm install @material-ui/core` and `npm install @material-ui/icons` <br>
+&emsp; c. Install React Dropdown: `yarn add react-dropdown` <br>
 &emsp; - If npm doesn't work, try replacing `npm install` with `yarn add` <br>
 &emsp; d. Install Sass Stylesheet: `$ yarn add node-sass@4.14.1`
 10. Run the website: `yarn start` <br>
